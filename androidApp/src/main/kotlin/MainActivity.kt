@@ -1,4 +1,4 @@
-package org.konan.multiplatform
+package org.linya.todo.multiplatform
 
 import android.app.Application
 import android.content.Context
