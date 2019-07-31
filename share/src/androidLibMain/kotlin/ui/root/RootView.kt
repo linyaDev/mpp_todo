@@ -1,17 +1,8 @@
 package ui.root
 
 import android.content.Context
-import android.widget.FrameLayout
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.channels.produce
 import mvi.Storage
 import ribs.RenderView
-import ribs.RibView
 import ribs.ViewCreator
 import ribs.ViewNavigator
 import utils.ui.Screen

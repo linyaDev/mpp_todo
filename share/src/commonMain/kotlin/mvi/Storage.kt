@@ -4,8 +4,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.consumeEach
-import ribs.RenderView
-import utils.MyScope
 import utils.dispatcher
 import utils.ui.Screen
 

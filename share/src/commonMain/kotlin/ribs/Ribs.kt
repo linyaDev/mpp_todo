@@ -25,27 +25,35 @@ interface ViewCreator{
 abstract class Router(private val dependencies: OSSpecificDependencies) {
 
     protected var child:Router? = null
+    private var isAttached = false
+
     abstract fun getScreen(): Screen.ScreenType
 
     private val interactors = mutableListOf<Storage<out Any,out Any,out Any>>()
 
     fun addInteractor(interactor: Storage<out Any,out Any,out Any>){
-        dependencies.addView(interactor.screen)
+        if (isAttached) {
+            dependencies.addView(interactor.screen)
+        }
         interactors.add(interactor)
     }
 
     fun removeInteractor(interactor: Storage<out Any,out Any,out Any>){
-        dependencies.removeView(interactor.screen)
+        if (isAttached) {
+            dependencies.removeView(interactor.screen)
+        }
         interactors.remove(interactor)
     }
 
     internal open fun didAttach() {
+        isAttached = true
         interactors.forEach {
             dependencies.addView(it.screen)
         }
     }
 
     private fun didDetach() {
+        isAttached = false
         interactors.forEach {
             dependencies.removeView(it.screen)
         }
@@ -75,5 +83,3 @@ abstract class Router(private val dependencies: OSSpecificDependencies) {
         router.didDetach()
     }
 }
-
-expect open class RibView
