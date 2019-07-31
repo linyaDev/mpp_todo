@@ -2,7 +2,6 @@ package ui.root
 
 import mvi.Storage
 import ribs.*
-import ui.login.LoginBuilder
 import platform.UIKit.UIViewController
 import platform.UIKit.addSubview
 import platform.UIKit.removeFromSuperview
@@ -21,8 +20,8 @@ actual class RootView : RenderView<Any,Any> {
     }
 }
 
-actual class RootViewProvider actual constructor(private val dependencies: OSSpecificDependencies) {
+actual class RootViewProvider actual constructor(private val dependencies: OSDependencies) {
     actual fun getView() = RootView()
 }
 
-actual interface OSSpecificDependencies: ViewCreator,ViewNavigator
+actual interface OSSpecificDependencies: ViewCreator,ViewHolder

@@ -1,13 +1,8 @@
 package ui.profile
 
-import kotlinx.cinterop.ObjCAction
-import ribs.Router
-import kotlinx.cinterop.readValue
 import platform.CoreGraphics.CGRectZero
 import platform.Foundation.NSSelectorFromString
 import platform.UIKit.*
-import ribs.RibView
-import ui.root.OSSpecificDependencies
 
 /*
 actual class ProfileView : RibView(frame = CGRectZero.readValue()) {
@@ -73,6 +68,6 @@ actual class ProfileView : RibView(frame = CGRectZero.readValue()) {
 
 }
 
-actual class ProfileViewProvider actual constructor(dependencies: OSSpecificDependencies) {
+actual class ProfileViewProvider actual constructor(dependencies: OSDependencies) {
         actual fun getView() = ProfileView()
 }*/

@@ -1,13 +1,9 @@
 package ui.profile
 
-import ribs.Router
-import ribs.RibView
-import ui.root.OSSpecificDependencies
-
 /*
 data class UserProfile(val username: String, val password: String)
 
-class ProfileBuilder(private val dependencies: OSSpecificDependencies) {
+class ProfileBuilder(private val dependencies: OSDependencies) {
     fun build(profile: UserProfile, authorizationListener: AuthorizationListener): ProfileRouter {
         val router = ProfileRouter()
         val interactor = ProfileInteractor(profile, authorizationListener)
@@ -61,6 +57,6 @@ expect class ProfileView : RibView {
     fun update(profile: UserProfile)
 }
 
-expect class ProfileViewProvider(dependencies: OSSpecificDependencies) {
+expect class ProfileViewProvider(dependencies: OSDependencies) {
     fun getView(): ProfileView
 }*/

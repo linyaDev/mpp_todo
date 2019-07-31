@@ -7,6 +7,21 @@ import kotlinx.coroutines.channels.consumeEach
 import utils.dispatcher
 import utils.ui.Screen
 
+interface RenderView<Wish,State>{
+    fun render(state: State)
+    fun setupPresenter(presenter: Storage<Wish, State, out Any>)
+    fun getScreen(): Screen<out Any,out Any>
+}
+
+interface ViewHolder{
+    fun addView(screen: Screen<out Any, out Any>)
+    fun removeView(screen: Screen<out Any, out Any>)
+}
+
+interface ViewCreator{
+    fun createView(screenType: Screen.ScreenType) : Screen<out Any, out Any>
+}
+
 @ExperimentalCoroutinesApi
 abstract class Storage<Wish,State,Effect>(
     val screen : Screen<Wish,State>,

@@ -1,7 +1,6 @@
 package utils.ui.login
 
 import mvi.Storage
-import ribs.RenderView
 import utils.ui.Screen
 
 class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.TodoWish,TodoStorage.TodoState,TodoStorage.TodoEffect>(

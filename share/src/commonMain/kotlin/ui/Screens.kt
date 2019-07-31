@@ -1,6 +1,6 @@
 package utils.ui
 
-import ribs.RenderView
+import mvi.RenderView
 
 
 data class Screen<Wish,State>(val renderView: RenderView<Wish, State>,

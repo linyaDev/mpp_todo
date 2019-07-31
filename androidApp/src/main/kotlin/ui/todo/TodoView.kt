@@ -6,12 +6,12 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import mvi.Storage
-import ui.login.LoginStorageView
+import ui.todo.TodoStorageView
 import utils.ui.Screen
 import utils.ui.login.TodoStorage
 
 class TodoView//output?.userDidPressLogin(username = username.text.toString(), password = password.text.toString())
-(context: Context) : FrameLayout(context), LoginStorageView {
+(context: Context) : FrameLayout(context), TodoStorageView {
     var storage: Storage<TodoStorage.TodoWish,TodoStorage.TodoState,out Any>? = null
     val username: EditText
     val password: EditText

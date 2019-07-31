@@ -1,9 +1,7 @@
-package ui.login
-
-import ribs.*
+package ui.todo
 
 /*
-import ui.root.OSSpecificDependencies
+import ui.root.OSDependencies
 
 import kotlinx.cinterop.ObjCAction
 import kotlinx.cinterop.readValue
@@ -11,7 +9,7 @@ import platform.CoreGraphics.CGRectZero
 import platform.Foundation.NSSelectorFromString
 import platform.UIKit.*
 
-actual class LoginView : RibView(frame = CGRectZero.readValue()) {
+actual class TodoView : RibView(frame = CGRectZero.readValue()) {
     private val username: UITextField
     private val password: UITextField
 
@@ -55,7 +53,7 @@ actual class LoginView : RibView(frame = CGRectZero.readValue()) {
             translatesAutoresizingMaskIntoConstraints = false
             setTitle("Login", UIControlStateNormal)
             addTarget(
-                target = this@LoginView,
+                target = this@TodoView,
                 action = NSSelectorFromString("loginDidPress"),
                 forControlEvents = UIControlEventTouchUpInside
             )
@@ -76,6 +74,6 @@ actual class LoginView : RibView(frame = CGRectZero.readValue()) {
     }
 }
 
-actual class LoginViewProvider actual constructor(private val dependencies: OSSpecificDependencies) {
-    actual fun getView() = LoginView()
+actual class LoginViewProvider actual constructor(private val dependencies: OSDependencies) {
+    actual fun getView() = TodoView()
 }*/

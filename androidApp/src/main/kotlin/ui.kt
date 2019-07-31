@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import mvi.ViewCreator
+import mvi.ViewHolder
 import org.konan.multiplatform.ui.login.TodoView
-import ribs.RenderView
 import ui.root.*
 import utils.ui.Screen
 
@@ -19,7 +20,7 @@ class MyApplication : Application() {
     }
 }
 
-class MainActivity : AppCompatActivity(), OSSpecificDependencies{
+class MainActivity : AppCompatActivity(), OSDependencies , ViewCreator, ViewHolder , Navigator {
 
     private lateinit var rootRouter: RootRouter
     private lateinit var rootView: ViewGroup
@@ -35,12 +36,21 @@ class MainActivity : AppCompatActivity(), OSSpecificDependencies{
         setContentView(rootView)
     }
 
-    override val context: Context
-        get() = this
-
     override fun onDestroy() {
         super.onDestroy()
         rootRouter.deactivate()
+    }
+
+    override fun viewCreator(): ViewCreator {
+        return this
+    }
+
+    override fun viewHolder(): ViewHolder {
+        return this
+    }
+
+    override fun navigator(): Navigator {
+        return rootRouter
     }
 
     override fun createView(screenType: Screen.ScreenType): Screen<out Any, out Any> {
@@ -57,9 +67,4 @@ class MainActivity : AppCompatActivity(), OSSpecificDependencies{
     override fun removeView(screen: Screen<out Any, out Any>) {
 
     }
-
-    override fun replaceView(previewScreen: Screen<out Any, out Any>, nextScreen: Screen<out Any, out Any>) {
-
-    }
-
 }
