@@ -8,7 +8,7 @@
 import UIKit
 import share
 
-class TasksView: UIView , LoginStorageView{
+class TasksView: UIView , TodoStorageView{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTodoButton: UIButton!
@@ -21,16 +21,24 @@ class TasksView: UIView , LoginStorageView{
     private let tasksAdapter = TasksAdapter()
     
     @IBAction func menuPressed(_ sender: Any) {
-        presenter.accept(wish: TodoStorage.TodoWishLogin())
+        presenter.accept(wish: TodoStorage.TodoWishAddTodo())
     }
     
     @IBAction func todoPressed(_ sender: Any) {
-        presenter.accept(wish: TodoStorage.TodoWishLogin())
+        //presenter.accept(wish: TodoStorage.TodoWishLogin())
     }
     
-    func render(state_ state: Any?) {
+    func render(state: Any?) {
+        let model  = state as! TodoStorage.TodoState
+        let name  = model.name
         
-        tableView.reloadData()
+        if (model.todoList.count>0) {
+            let todoList  = model.todoList[0]
+            todoList.title
+            let x = 0
+        }
+       
+      
     }
     
     func getScreen() -> Screen {

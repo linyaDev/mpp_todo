@@ -10,8 +10,7 @@ import ui.todo.TodoStorageView
 import utils.ui.Screen
 import utils.ui.login.TodoStorage
 
-class TodoView//output?.userDidPressLogin(username = username.text.toString(), password = password.text.toString())
-(context: Context) : FrameLayout(context), TodoStorageView {
+class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
     var storage: Storage<TodoStorage.TodoWish,TodoStorage.TodoState,out Any>? = null
     val username: EditText
     val password: EditText

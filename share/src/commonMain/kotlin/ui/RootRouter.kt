@@ -6,7 +6,7 @@ import ribs.Router
 import ui.todo.LoginBuilder
 
 
-class RootBuilder() {
+class RootBuilder {
 
     fun build(): RootRouter {
          return RootRouter()

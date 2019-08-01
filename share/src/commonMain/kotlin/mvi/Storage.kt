@@ -36,6 +36,9 @@ abstract class Storage<Wish,State,Effect>(
 
         GlobalScope.launch(dispatcher) {
             subject.send(initState)
+            subject.openSubscription().consumeEach {
+                this@Storage.screen.renderView.render(it)
+            }
         }
 
     }
@@ -43,9 +46,7 @@ abstract class Storage<Wish,State,Effect>(
     fun activate(){
         //this.renderView = renderView
         GlobalScope.launch(dispatcher) {
-            subject.openSubscription().consumeEach {
-                this@Storage.screen.renderView.render(it)
-            }
+
         }
     }
     fun deactivate(){

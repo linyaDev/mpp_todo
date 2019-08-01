@@ -20,7 +20,7 @@ class MyApplication : Application() {
     }
 }
 
-class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolder, Navigator {
+class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolder {
 
     companion object {
         private var rootRouter: RootRouter? = null

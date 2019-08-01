@@ -14,20 +14,6 @@ import kotlin.native.concurrent.freeze
 
 internal actual val dispatcher: CoroutineDispatcher = NsQueueDispatcher(dispatch_get_main_queue())//NsQueueDispatcher(dispatch_get_main_queue())
 
-internal actual  class MyScope(dispatcher: CoroutineDispatcher): CoroutineScope {
-    private val dispatcher = MainDispatcher()
-    private val job = Job()
-
-    override val coroutineContext: CoroutineContext
-        get() = dispatcher + job
-}
-
-private class MainDispatcher: CoroutineDispatcher() {
-    override fun dispatch(context: CoroutineContext, block: Runnable) {
-        dispatch_async(dispatch_get_main_queue()) { block.run() }
-    }
-}
-
 internal class NsQueueDispatcher(private val dispatchQueue: dispatch_queue_t) : CoroutineDispatcher() {
     override fun dispatch(context: CoroutineContext, block: Runnable) {
         dispatch_async(dispatchQueue.freeze()) {

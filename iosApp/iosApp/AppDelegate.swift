@@ -10,32 +10,37 @@ import UIKit
 import share
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OSSpecificDependencies{
-
+class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, OSDependencies{
+   
     var window: UIWindow?
-    
     var router: RootRouter?
     var rootViewController: UIViewController!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let router = RootBuilder(dependencies: self).build()
+        let router = RootBuilder().build()
         window = UIWindow(frame: UIScreen.main.bounds)
         
         rootViewController = ViewController()
         window?.rootViewController = rootViewController
-        
         self.router = router
-        
-        router.activate()
+    
+        router.activate(dependencies: self)
         window?.makeKeyAndVisible()
         
         return true
     }
     
-    
     func createView(screenType: Screen.ScreenType) -> Screen {
         return  Screen(renderView: TasksView(frame: rootViewController!.view.bounds), screenType: Screen.ScreenType.login)
+    }
+    
+    func viewCreator() -> ViewCreator {
+        return self
+    }
+    
+    func viewHolder() -> ViewHolder {
+        return self
     }
     
     func addView(screen: Screen){
@@ -44,14 +49,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSpecificDependencies{
             rootViewController?.view.addSubview(view as! UIView)
         }
     }
-
+    
     func removeView(screen: Screen) {
-        
+        let view = screen.renderView
+        if (view is UIView) {
+            rootViewController?.view.willRemoveSubview((view as! UIView))
+        }
     }
+    
+    
+    /*
     
     func replaceView(previewScreen: Screen, nextScreen: Screen) {
         
-    }
+    }*/
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
