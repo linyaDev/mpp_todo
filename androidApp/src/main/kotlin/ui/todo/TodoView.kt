@@ -44,7 +44,7 @@ class TodoView//output?.userDidPressLogin(username = username.text.toString(), p
         this.storage = storage
         android.os.Handler().postDelayed(
             {
-                this.storage?.accept(TodoStorage.TodoWish.Login)
+                this.storage?.accept(TodoStorage.TodoWish.AddTodo)
 
             },
             2000L

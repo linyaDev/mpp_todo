@@ -11,12 +11,12 @@ class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.Tod
 ){
 
     sealed class TodoWish{
-        data class SetName(val x:Int = 3): TodoWish()
-        data class SetPassword(val x:Int = 3): TodoWish()
-        object Login: TodoWish()
+        object ShowMenu : TodoWish()
+        object AddTodo: TodoWish()
     }
 
-    data class TodoState(val name: String = "")
+    data class TodoState(val name: String = "",
+                         val todoList: List<Int> = listOf())
 
     sealed class TodoEffect{
         data class setName(val x:Int = 3): TodoEffect()
@@ -32,7 +32,7 @@ class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.Tod
 
     class TodoReducer: Reducer<TodoState,TodoEffect>{
         override fun reduce(state: TodoState, effect: TodoEffect): TodoState {
-            return state
+            return state.copy(todoList = listOf(3,4,6))
         }
     }
 
