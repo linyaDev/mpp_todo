@@ -6,10 +6,10 @@ import ribs.Router
 import ui.todo.LoginBuilder
 
 
-class RootBuilder(private val dependencies: OSDependencies) {
+class RootBuilder() {
 
     fun build(): RootRouter {
-         return RootRouter(dependencies)
+         return RootRouter()
     }
 }
 
@@ -23,21 +23,27 @@ interface Navigator{
 interface OSDependencies{
     fun viewCreator(): ViewCreator
     fun viewHolder(): ViewHolder
+}
+
+interface RouterDependencies{
+    fun viewCreator(): ViewCreator
+    fun viewHolder(): ViewHolder
     fun navigator(): Navigator
 }
 
-class RootRouter(private val dependencies: OSDependencies) : Navigator{
+class RootRouter : Navigator , RouterDependencies{
     private val routersList = mutableListOf<Router>()
-
+    private lateinit var dependencies: OSDependencies
     private fun moveTo(router: Router){
         routersList.add(router)
         router.didAttach()
     }
 
-     fun activate() {
+     fun activate(dependencies: OSDependencies) {
+        this.dependencies = dependencies
 
         if (routersList.isEmpty()){
-            val router = LoginBuilder().build(dependencies)
+            val router = LoginBuilder().build(this)
             moveTo(router)
         }else{
             routersList.last().didAttach()
@@ -48,5 +54,16 @@ class RootRouter(private val dependencies: OSDependencies) : Navigator{
         routersList.last().didDetach()
     }
 
+    override fun viewCreator(): ViewCreator {
+        return dependencies.viewCreator()
+    }
+
+    override fun viewHolder(): ViewHolder {
+        return dependencies.viewHolder()
+    }
+
+    override fun navigator(): Navigator {
+       return this
+    }
 }
 

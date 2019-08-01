@@ -2,9 +2,10 @@ package ribs
 
 import mvi.Storage
 import ui.root.OSDependencies
+import ui.root.RouterDependencies
 import utils.ui.Screen
 
-abstract class Router(private val dependencies: OSDependencies) {
+abstract class Router(private val dependencies: RouterDependencies) {
 
     private var isAttached = false
     private val interactors = mutableListOf<Storage<out Any,out Any,out Any>>()

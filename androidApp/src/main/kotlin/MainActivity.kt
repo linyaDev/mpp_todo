@@ -20,25 +20,29 @@ class MyApplication : Application() {
     }
 }
 
-class MainActivity : AppCompatActivity(), OSDependencies , ViewCreator, ViewHolder , Navigator {
+class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolder, Navigator {
 
-    private lateinit var rootRouter: RootRouter
+    companion object {
+        private var rootRouter: RootRouter? = null
+    }
+
     private lateinit var rootView: ViewGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        rootRouter = RootBuilder(this).build()
+        if (rootRouter == null)
+            rootRouter = RootBuilder().build()
 
         // save router in di
         rootView = FrameLayout(this)
-        rootRouter.activate()
+        rootRouter?.activate(this)
         setContentView(rootView)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        rootRouter.deactivate()
+        rootRouter?.deactivate()
     }
 
     override fun viewCreator(): ViewCreator {
@@ -49,12 +53,8 @@ class MainActivity : AppCompatActivity(), OSDependencies , ViewCreator, ViewHold
         return this
     }
 
-    override fun navigator(): Navigator {
-        return rootRouter
-    }
-
     override fun createView(screenType: Screen.ScreenType): Screen<out Any, out Any> {
-        return Screen(TodoView(this),screenType)
+        return Screen(TodoView(this), screenType)
     }
 
     override fun addView(screen: Screen<out Any, out Any>) {
@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity(), OSDependencies , ViewCreator, ViewHold
     }
 
     override fun removeView(screen: Screen<out Any, out Any>) {
-
+        val view = screen.renderView
+        if (view is View) {
+            rootView.removeView(view)
+        }
     }
 }
