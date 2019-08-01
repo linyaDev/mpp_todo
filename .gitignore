@@ -1,0 +1,10 @@
+/build
+.gradle/*
+.idea/*
+local.properties
+share/build/*
+androidApp/androidApp.iml
+share/share.iml
+share/share_iosMain.iml
+share/share_iosTest.iml
+mpp_todo.iml
