@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
         return true
     }
     
-    func createView(screenType: Screen.ScreenType) -> Screen {
-        return  Screen(renderView: TasksView(frame: rootViewController!.view.bounds), screenType: Screen.ScreenType.login)
+    func createView(storageViewType: Screen.ScreenType) -> Screen {
+        return  Screen(renderView: TasksView(frame: rootViewController!.view.bounds), storageViewType: Screen.ScreenType.login)
     }
     
     func viewCreator() -> ViewCreator {
@@ -43,15 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
         return self
     }
     
-    func addView(screen: Screen){
-        let view = screen.renderView
+    func addView(storageView: Screen){
+        let view = storageView.renderView
         if (view is UIView) {
             rootViewController?.view.addSubview(view as! UIView)
         }
     }
     
-    func removeView(screen: Screen) {
-        let view = screen.renderView
+    func removeView(storageView: Screen) {
+        let view = storageView.renderView
         if (view is UIView) {
             rootViewController?.view.willRemoveSubview((view as! UIView))
         }

@@ -79,7 +79,7 @@ kotlin {
 }
 
 task copyFramework {
-    def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
+    def buildType = project.findProperty("kotlin.build.viewType") ?: "DEBUG"
     dependsOn "link${buildType.toLowerCase().capitalize()}FrameworkIos"
 
     doLast {

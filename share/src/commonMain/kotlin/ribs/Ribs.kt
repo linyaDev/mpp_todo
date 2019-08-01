@@ -1,9 +1,7 @@
-package ribs
+package com.linya.utils.ribs
 
-import mvi.Storage
-import ui.root.OSDependencies
-import ui.root.RouterDependencies
-import utils.ui.Screen
+import com.linya.utils.interfaces.RouterDependencies
+import com.linya.utils.mvi.Storage
 
 abstract class Router(private val dependencies: RouterDependencies) {
 
@@ -12,14 +10,14 @@ abstract class Router(private val dependencies: RouterDependencies) {
 
     fun addInteractor(interactor: Storage<out Any,out Any,out Any>){
         if (isAttached) {
-            dependencies.viewHolder().addView(interactor.screen)
+            dependencies.viewHolder().addView(interactor.storageView)
         }
         interactors.add(interactor)
     }
 
     fun removeInteractor(interactor: Storage<out Any,out Any,out Any>){
         if (isAttached) {
-            dependencies.viewHolder().removeView(interactor.screen)
+            dependencies.viewHolder().removeView(interactor.storageView)
         }
         interactors.remove(interactor)
     }
@@ -27,14 +25,14 @@ abstract class Router(private val dependencies: RouterDependencies) {
     fun didAttach() {
         isAttached = true
         interactors.forEach {
-            dependencies.viewHolder().addView(it.screen)
+            dependencies.viewHolder().addView(it.storageView)
         }
     }
 
     fun didDetach() {
         isAttached = false
         interactors.forEach {
-            dependencies.viewHolder().removeView(it.screen)
+            dependencies.viewHolder().removeView(it.storageView)
         }
     }
 }

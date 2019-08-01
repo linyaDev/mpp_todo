@@ -1,10 +1,11 @@
-package utils.ui.login
+package com.linya.utils.ui.todo
 
-import mvi.Storage
-import utils.ui.Screen
+import com.linya.utils.mvi.Storage
+import com.linya.utils.mvi.StorageView
 
-class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.TodoWish,TodoStorage.TodoState,TodoStorage.TodoEffect>(
-    screen = screen,
+
+class TodoStorage(storageView : StorageView<TodoWish, TodoState>): Storage<TodoStorage.TodoWish, TodoStorage.TodoState, TodoStorage.TodoEffect>(
+    storageView = storageView,
     initState = TodoState(""),
     actor = TodoActor(),
     reducer = TodoReducer()
@@ -24,7 +25,7 @@ class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.Tod
         data class setName(val x:Int = 3): TodoEffect()
     }
 
-    class TodoActor: Actor<TodoWish,TodoState,TodoEffect>{
+    class TodoActor: Actor<TodoWish, TodoState, TodoEffect>{
         override fun invoke(state: TodoState, wish: TodoWish, channel: Emitter<TodoEffect>) {
             when(wish){
                 else -> channel.send(TodoEffect.setName(5))
@@ -32,7 +33,7 @@ class TodoStorage(screen : Screen<TodoWish, TodoState>): Storage<TodoStorage.Tod
         }
     }
 
-    class TodoReducer: Reducer<TodoState,TodoEffect>{
+    class TodoReducer: Reducer<TodoState, TodoEffect>{
         override fun reduce(state: TodoState, effect: TodoEffect): TodoState {
             return state.copy(todoList = listOf(TodoModel()))
         }

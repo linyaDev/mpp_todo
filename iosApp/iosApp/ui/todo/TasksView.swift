@@ -41,8 +41,8 @@ class TasksView: UIView , TodoStorageView{
       
     }
     
-    func getScreen() -> Screen {
-        return Screen(renderView: self, screenType: Screen.ScreenType.login)
+    func getStorageView() -> Screen {
+        return Screen(renderView: self, storageViewType: Screen.ScreenType.login)
     }
     
     func setupPresenter(presenter: Storage) {

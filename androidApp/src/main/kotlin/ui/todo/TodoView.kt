@@ -1,14 +1,15 @@
-package org.konan.multiplatform.ui.login
+package org.linya.todo.multiplatform.ui.todo
 
 import android.content.Context
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import mvi.Storage
-import ui.todo.TodoStorageView
-import utils.ui.Screen
-import utils.ui.login.TodoStorage
+import com.linya.utils.mvi.Storage
+import com.linya.utils.mvi.StorageView
+import com.linya.utils.ui.todo.TodoStorage
+import com.linya.utils.ui.todo.TodoStorageView
+import com.linya.utils.ui.todo.TodoViewTypes
 
 class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
     var storage: Storage<TodoStorage.TodoWish,TodoStorage.TodoState,out Any>? = null
@@ -30,7 +31,7 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
             setOnClickListener {
                 //output?.userDidPressLogin(username = username.text.toString(), password = password.text.toString())
             }
-            text = "Login"
+            text = "TodoTable"
         }
         addView(linearLayout)
     }
@@ -50,7 +51,7 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
         )
     }
 
-    override fun getScreen(): Screen<out Any, out Any> {
-        return Screen(this,Screen.ScreenType.Login)
+    override fun viewType(): StorageView<out Any, out Any> {
+        return StorageView(this,TodoViewTypes.TodoTable)
     }
 }

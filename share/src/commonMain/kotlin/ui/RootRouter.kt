@@ -1,57 +1,34 @@
-package ui.root
+package com.linya.utils.ui
 
-import mvi.ViewCreator
-import mvi.ViewHolder
-import ribs.Router
-import ui.todo.LoginBuilder
+import com.linya.utils.interfaces.*
 
-
-class RootBuilder {
-
-    fun build(): RootRouter {
-         return RootRouter()
-    }
-}
-
-interface Navigator{
-    fun navigateTo(router: Router){}
-    fun newRootScreen(router: Router){}
-    fun replaceScreen(router: Router){}
-    fun backTo(router: Router){}
-}
-
-interface OSDependencies{
-    fun viewCreator(): ViewCreator
-    fun viewHolder(): ViewHolder
-}
-
-interface RouterDependencies{
-    fun viewCreator(): ViewCreator
-    fun viewHolder(): ViewHolder
-    fun navigator(): Navigator
-}
-
-class RootRouter : Navigator , RouterDependencies{
-    private val routersList = mutableListOf<Router>()
+class RootRouter : Navigator, RouterDependencies {
+    private val routersList = mutableListOf<Screen>()
     private lateinit var dependencies: OSDependencies
-    private fun moveTo(router: Router){
-        routersList.add(router)
+
+    override fun navigateTo(screen:Screen){
+        val router = screen.router()
         router.didAttach()
+
+        if (routersList.isNotEmpty())
+            routersList.last().router().didDetach()
+
+        routersList.add(screen)
     }
 
      fun activate(dependencies: OSDependencies) {
         this.dependencies = dependencies
 
         if (routersList.isEmpty()){
-            val router = LoginBuilder().build(this)
-            moveTo(router)
+            val screen = Screens.TodoScreen(this)
+            navigateTo(screen)
         }else{
-            routersList.last().didAttach()
+            routersList.last().router().didAttach()
         }
     }
 
     fun deactivate() {
-        routersList.last().didDetach()
+        routersList.last().router().didDetach()
     }
 
     override fun viewCreator(): ViewCreator {

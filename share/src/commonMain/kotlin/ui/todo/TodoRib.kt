@@ -1,28 +1,26 @@
-package ui.todo
+package com.linya.utils.ui.todo
 
-import mvi.RenderView
-import ribs.*
-import ui.root.OSDependencies
-import ui.root.RouterDependencies
-import utils.ui.Screen
-import utils.ui.login.TodoStorage
+import com.linya.utils.interfaces.Builder
+import com.linya.utils.interfaces.RenderView
+import com.linya.utils.interfaces.RouterDependencies
+import com.linya.utils.interfaces.ScreenType
+import com.linya.utils.mvi.StorageView
+import com.linya.utils.ribs.Router
+import com.linya.utils.ui.Screens
 
 interface TodoStorageView : RenderView<TodoStorage.TodoWish,TodoStorage.TodoState>
-typealias TodoView  = Screen<TodoStorage.TodoWish,TodoStorage.TodoState>
-
-class LoginBuilder {
-    fun build(dependencies: RouterDependencies): TodoRouter {
-        return TodoRouter(dependencies)
-    }
-}
+typealias TodoView  = StorageView<TodoStorage.TodoWish, TodoStorage.TodoState>
 
 class TodoRouter(dependencies: RouterDependencies): Router(dependencies){
 
     init {
-        val view = dependencies.viewCreator().createView(Screen.ScreenType.Login) as TodoView
-        val renderView = view.renderView as TodoStorageView
-        val interactor = TodoStorage(view)
-        renderView.setupPresenter(interactor)
-        addInteractor(interactor)
+        val storageView = dependencies.viewCreator().createView(TodoViewTypes.TodoTable)
+        val view = storageView as? TodoView
+        if (view!=null) {
+            val renderView = view.renderView as TodoStorageView
+            val interactor = TodoStorage(view)
+            renderView.setupPresenter(interactor)
+            addInteractor(interactor)
+        }
     }
 }

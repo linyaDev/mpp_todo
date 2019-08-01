@@ -1,34 +1,18 @@
-package mvi
+package com.linya.utils.mvi
 
+import com.linya.utils.dispatcher
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.consumeEach
-import utils.dispatcher
-import utils.ui.Screen
-
-interface RenderView<Wish,State>{
-    fun render(state: State)
-    fun setupPresenter(presenter: Storage<Wish, State, out Any>)
-    fun getScreen(): Screen<out Any,out Any>
-}
-
-interface ViewHolder{
-    fun addView(screen: Screen<out Any, out Any>)
-    fun removeView(screen: Screen<out Any, out Any>)
-}
-
-interface ViewCreator{
-    fun createView(screenType: Screen.ScreenType) : Screen<out Any, out Any>
-}
 
 @ExperimentalCoroutinesApi
 abstract class Storage<Wish,State,Effect>(
-    val screen : Screen<Wish,State>,
-    private val initState : State,
-    private val actor: Actor<Wish,State,Effect>,
-    private val reducer: Reducer<State,Effect>
-) {
+        val storageView : StorageView<Wish,State>,
+        private val initState : State,
+        private val actor: Actor<Wish,State,Effect>,
+        private val reducer: Reducer<State,Effect>
+){
     private val subject = ConflatedBroadcastChannel<State>()
     private val channel = Channel<Effect>()
 
@@ -37,7 +21,7 @@ abstract class Storage<Wish,State,Effect>(
         GlobalScope.launch(dispatcher) {
             subject.send(initState)
             subject.openSubscription().consumeEach {
-                this@Storage.screen.renderView.render(it)
+                this@Storage.storageView.renderView.render(it)
             }
         }
 

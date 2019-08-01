@@ -1,17 +1,19 @@
 package org.linya.todo.multiplatform
 
 import android.app.Application
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import mvi.ViewCreator
-import mvi.ViewHolder
-import org.konan.multiplatform.ui.login.TodoView
-import ui.root.*
-import utils.ui.Screen
+import com.linya.utils.interfaces.OSDependencies
+import com.linya.utils.interfaces.ViewCreator
+import com.linya.utils.interfaces.ViewHolder
+import com.linya.utils.interfaces.ViewType
+import com.linya.utils.mvi.StorageView
+import com.linya.utils.ui.RootRouter
+import com.linya.utils.ui.todo.TodoViewTypes
+import org.linya.todo.multiplatform.ui.todo.TodoView
 
 class MyApplication : Application() {
     override fun onCreate() {
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         super.onCreate(savedInstanceState)
 
         if (rootRouter == null)
-            rootRouter = RootBuilder().build()
+            rootRouter = RootRouter()
 
         // save router in di
         rootView = FrameLayout(this)
@@ -53,19 +55,25 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         return this
     }
 
-    override fun createView(screenType: Screen.ScreenType): Screen<out Any, out Any> {
-        return Screen(TodoView(this), screenType)
+    override fun createView(viewType: ViewType): StorageView<out Any, out Any>? {
+        if(viewType is TodoViewTypes){
+            when(viewType){
+                TodoViewTypes.TodoTable -> return StorageView(TodoView(this), viewType)
+            }
+        }
+
+        return null
     }
 
-    override fun addView(screen: Screen<out Any, out Any>) {
-        val view = screen.renderView
+    override fun addView(storageView: StorageView<out Any, out Any>) {
+        val view = storageView.renderView
         if (view is View) {
             rootView.addView(view)
         }
     }
 
-    override fun removeView(screen: Screen<out Any, out Any>) {
-        val view = screen.renderView
+    override fun removeView(storageView: StorageView<out Any, out Any>) {
+        val view = storageView.renderView
         if (view is View) {
             rootView.removeView(view)
         }
