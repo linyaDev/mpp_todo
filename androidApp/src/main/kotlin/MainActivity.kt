@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         return this
     }
 
-    override fun createView(viewType: ViewType): RenderView<out Any, out Any>? {
+    override fun createView(viewType: ViewType): RenderView<out Any,out  Any,out Any>? {
         if(viewType is TodoViewTypes){
             when(viewType){
                 TodoViewTypes.TodoTable -> return TodoView(this)
@@ -58,13 +58,13 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         return null
     }
 
-    override fun addView(renderView: RenderView<out Any, out Any>) {
+    override fun addView(renderView: RenderView<out Any, out Any, out Any>) {
         if (renderView is View) {
             rootView.addView(renderView)
         }
     }
 
-    override fun removeView(renderView: RenderView<out Any, out Any>) {
+    override fun removeView(renderView: RenderView<out Any, out Any, out Any>) {
         if (renderView is View) {
             rootView.removeView(renderView)
         }

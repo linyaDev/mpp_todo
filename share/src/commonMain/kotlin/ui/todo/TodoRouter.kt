@@ -5,8 +5,8 @@ import com.linya.utils.interfaces.RouterDependencies
 import com.linya.utils.mvi.Store
 import com.linya.utils.router.Router
 
-typealias TodoStorageView = RenderView<TodoStorage.TodoWish,TodoStorage.TodoState>
-typealias TodoView  = RenderView<TodoStorage.TodoWish, TodoStorage.TodoState>
+typealias TodoStorageView = RenderView<TodoStorage.TodoWish,TodoStorage.TodoState,TodoStorage.TodoNews>
+typealias TodoView  = RenderView<TodoStorage.TodoWish, TodoStorage.TodoState,TodoStorage.TodoNews>
 
 class TodoRouter(dependencies: RouterDependencies): Router(dependencies){
 

@@ -11,13 +11,14 @@ import kotlinx.coroutines.channels.consumeEach
 typealias Store<Wish,State> = Storage<Wish,State,*,*>
 @ExperimentalCoroutinesApi
 abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
-        val renderView : RenderView<Wish,State>,
+        val renderView : RenderView<Wish,State,News>,
         private val initState : State,
         private val actor: Actor<Wish,State,Effect>,
-        private val reducer: Reducer<State,Effect>
+        private val reducer: Reducer<State,Effect>,
+        private val newsPublisher: NewsPublisher<Wish,State,Effect,News>? = null
 ){
     private val subject = ConflatedBroadcastChannel<State>()
-    private val channel = Channel<Effect>()
+    private val channel = Channel<Pair<Wish,Effect>>()
 
     init {
 
@@ -42,13 +43,21 @@ abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
         fun invoke(state: State, wish: Wish, channel : Emitter<Effect>)
     }
 
+    interface NewsPublisher<Wish,State,Effect,News> {
+        fun invokeNewsPublisher(p1: Wish, p2: Effect, p3: State): News?
+    }
+
     init {
 
         GlobalScope.launch(dispatcher) {
 
-            for(eff in channel){
-                val newState = reducer.reduce(subject.value,eff)
+            for(pair in channel){
+                val newState = reducer.reduce(subject.value,pair.second)
                 subject.send(newState)
+                val news = newsPublisher?.invokeNewsPublisher(pair.first,pair.second,newState)
+                if(news!=null){
+                    renderView.processNews(news)
+                }
             }
         }
     }
@@ -57,7 +66,7 @@ abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
         val emitter = object : Emitter<Effect>{
             override fun send(effect: Effect) {
                 GlobalScope.launch(dispatcher) {
-                    channel.send(effect)
+                    channel.send(Pair(wish,effect))
                 }
             }
         }

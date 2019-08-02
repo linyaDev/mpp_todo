@@ -16,10 +16,11 @@ interface Screen{
 interface  ViewType
 
 // view for mvi render
-interface RenderView<Wish: Any,State : Any>{
+interface RenderView<Wish: Any,State : Any, News : Any>{
     fun render(state: State)
-
+    fun processNews(state: News){}
     fun setupPresenter(presenter: Store<Wish, State>)
+
     //optional for animation
     fun haveRemoveAnimation():Boolean{ return false }
     fun removeFromParentViewAnimated(listener : AnimationListener){}
@@ -27,5 +28,4 @@ interface RenderView<Wish: Any,State : Any>{
     interface AnimationListener{
         fun animationEnded()
     }
-
 }

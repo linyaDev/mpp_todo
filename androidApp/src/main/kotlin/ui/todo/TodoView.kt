@@ -40,6 +40,7 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
         val x = 0
     }
 
+
     override fun setupPresenter(presenter: Store<TodoStorage.TodoWish, TodoStorage.TodoState>) {
         this.storage = storage
         android.os.Handler().postDelayed(

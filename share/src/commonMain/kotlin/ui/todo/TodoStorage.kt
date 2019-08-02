@@ -8,9 +8,8 @@ sealed class TodoModel{
     data class TodoModelNote(val description: String= "",val text: String= ""): TodoModel()
 }
 
-class TodoStorage(renderView : RenderView<TodoWish, TodoState>):
-        Storage<TodoStorage.TodoWish, TodoStorage.TodoState, TodoStorage.TodoEffect,Any>
-        (
+class TodoStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>):
+        Storage<TodoStorage.TodoWish, TodoStorage.TodoState, TodoStorage.TodoEffect,TodoStorage.TodoNews>(
     renderView = renderView,
     initState = TodoState(todoList = listOf(TodoModel.TodoModelHeader("My tasks"))),
     actor = TodoActor(),
@@ -22,6 +21,9 @@ class TodoStorage(renderView : RenderView<TodoWish, TodoState>):
         object ShowFilter : TodoWish()
         object AddTodo: TodoWish()
         data class RemoveTodo(val todo: TodoModel): TodoWish()
+    }
+    sealed class TodoNews{
+
     }
 
     data class TodoState(val name: String = "",
