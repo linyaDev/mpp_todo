@@ -18,4 +18,13 @@ interface  ViewType
 interface RenderView<Wish,State>{
     fun render(state: State)
     fun setupPresenter(presenter: Storage<Wish, State, out Any>)
+
+    //optional for animation
+    fun haveRemoveAnimation():Boolean{ return false }
+    fun removeFromParentViewAnimated(listener : AnimationListener){}
+
+    interface AnimationListener{
+        fun animationEnded()
+    }
+
 }
