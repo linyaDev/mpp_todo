@@ -17,6 +17,7 @@ interface  ViewType
 // view for mvi render
 interface RenderView<Wish,State>{
     fun render(state: State)
+
     fun setupPresenter(presenter: Storage<Wish, State, out Any>)
 
     //optional for animation
