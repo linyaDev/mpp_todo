@@ -10,28 +10,31 @@ import UIKit
 import share
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, OSDependencies{
+class AppDelegate: UIResponder, UIApplicationDelegate/*, ViewCreator, ViewHolder, OSDependencies*/{
    
     var window: UIWindow?
     var router: RootRouter?
     var rootViewController: UIViewController!
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool{
         
-        let router = RootBuilder().build()
         window = UIWindow(frame: UIScreen.main.bounds)
         
         rootViewController = ViewController()
         window?.rootViewController = rootViewController
+        /*
+        let router = RootBuilder().build()
         self.router = router
-    
-        router.activate(dependencies: self)
+        router.activate(dependencies: self)*/
         window?.makeKeyAndVisible()
         
+        //debug
+        let taskView = TasksView(frame: rootViewController!.view.bounds)
+        rootViewController?.view.addSubview(taskView)
         return true
     }
-    
-    func createView(storageViewType: Screen.ScreenType) -> Screen {
+    /*
+    func createView(screenType: Screen.ScreenType) -> Screen {
         return  Screen(renderView: TasksView(frame: rootViewController!.view.bounds), storageViewType: Screen.ScreenType.login)
     }
     
@@ -55,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
         if (view is UIView) {
             rootViewController?.view.willRemoveSubview((view as! UIView))
         }
-    }
+    }*/
     
     
     /*

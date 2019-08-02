@@ -1,4 +1,4 @@
-package utils
+package com.linya.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
