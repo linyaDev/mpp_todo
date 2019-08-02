@@ -1,7 +1,7 @@
 package com.linya.utils.mvi
 
 import com.linya.utils.dispatcher
-import com.linya.utils.interfaces.StorageView
+import com.linya.utils.interfaces.RenderView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -9,7 +9,7 @@ import kotlinx.coroutines.channels.consumeEach
 
 @ExperimentalCoroutinesApi
 abstract class Storage<Wish,State,Effect>(
-        val storageView : StorageView<Wish,State>,
+        val renderView : RenderView<Wish,State>,
         private val initState : State,
         private val actor: Actor<Wish,State,Effect>,
         private val reducer: Reducer<State,Effect>
@@ -22,7 +22,7 @@ abstract class Storage<Wish,State,Effect>(
         GlobalScope.launch(dispatcher) {
             subject.send(initState)
             subject.openSubscription().consumeEach {
-                this@Storage.storageView.renderView.render(it)
+                this@Storage.renderView.render(it)
             }
         }
 

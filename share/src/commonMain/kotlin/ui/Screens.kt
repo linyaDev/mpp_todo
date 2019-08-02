@@ -3,7 +3,7 @@ package com.linya.utils.ui
 import com.linya.utils.interfaces.RouterDependencies
 import com.linya.utils.interfaces.Screen
 import com.linya.utils.interfaces.ScreenType
-import com.linya.utils.ribs.Router
+import com.linya.utils.router.Router
 import com.linya.utils.ui.todo.TodoRouter
 
 sealed class Screens: Screen{

@@ -21,7 +21,7 @@ class MyApplication : Application() {
 class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolder {
 
     companion object {
-        private var rootRouter: RootRouter? = null
+        private var rootRouter: RootRouter = RootRouter()
     }
 
     private lateinit var rootView: ViewGroup
@@ -29,18 +29,15 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (rootRouter == null)
-            rootRouter = RootRouter()
-
-        // save router in di
         rootView = FrameLayout(this)
-        rootRouter?.activate(this)
         setContentView(rootView)
+
+        rootRouter.activate(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        rootRouter?.deactivate()
+        rootRouter.deactivate()
     }
 
     override fun viewCreator(): ViewCreator {
@@ -51,27 +48,25 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         return this
     }
 
-    override fun createView(viewType: ViewType): StorageView<out Any, out Any>? {
+    override fun createView(viewType: ViewType): RenderView<out Any, out Any>? {
         if(viewType is TodoViewTypes){
             when(viewType){
-                TodoViewTypes.TodoTable -> return StorageView(TodoView(this), viewType)
+                TodoViewTypes.TodoTable -> return TodoView(this)
             }
         }
 
         return null
     }
 
-    override fun addView(storageView: StorageView<out Any, out Any>) {
-        val view = storageView.renderView
-        if (view is View) {
-            rootView.addView(view)
+    override fun addView(renderView: RenderView<out Any, out Any>) {
+        if (renderView is View) {
+            rootView.addView(renderView)
         }
     }
 
-    override fun removeView(storageView: StorageView<out Any, out Any>) {
-        val view = storageView.renderView
-        if (view is View) {
-            rootView.removeView(view)
+    override fun removeView(renderView: RenderView<out Any, out Any>) {
+        if (renderView is View) {
+            rootView.removeView(renderView)
         }
     }
 }

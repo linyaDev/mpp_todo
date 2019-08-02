@@ -5,7 +5,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.linya.utils.interfaces.StorageView
 import com.linya.utils.mvi.Storage
 import com.linya.utils.ui.todo.TodoStorage
 import com.linya.utils.ui.todo.TodoStorageView

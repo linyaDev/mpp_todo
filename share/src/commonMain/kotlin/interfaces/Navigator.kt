@@ -1,6 +1,6 @@
 package com.linya.utils.interfaces
 
-import com.linya.utils.ribs.Router
+import com.linya.utils.router.Router
 
 
 interface Navigator{
