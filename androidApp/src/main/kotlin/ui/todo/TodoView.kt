@@ -5,8 +5,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import com.linya.utils.interfaces.StorageView
 import com.linya.utils.mvi.Storage
-import com.linya.utils.mvi.StorageView
 import com.linya.utils.ui.todo.TodoStorage
 import com.linya.utils.ui.todo.TodoStorageView
 import com.linya.utils.ui.todo.TodoViewTypes
@@ -40,7 +40,7 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
         val x = 0
     }
 
-    override fun setupPresenter(storage: Storage<TodoStorage.TodoWish, TodoStorage.TodoState, out Any>) {
+    override fun setupPresenter(presenter: Storage<TodoStorage.TodoWish, TodoStorage.TodoState, out Any>) {
         this.storage = storage
         android.os.Handler().postDelayed(
             {
@@ -49,9 +49,5 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
             },
             2000L
         )
-    }
-
-    override fun viewType(): StorageView<out Any, out Any> {
-        return StorageView(this,TodoViewTypes.TodoTable)
     }
 }

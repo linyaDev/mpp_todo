@@ -1,6 +1,5 @@
 package com.linya.utils.ui
 
-import com.linya.utils.interfaces.Builder
 import com.linya.utils.interfaces.RouterDependencies
 import com.linya.utils.interfaces.Screen
 import com.linya.utils.interfaces.ScreenType
@@ -14,10 +13,8 @@ sealed class Screens: Screen{
         object InfoScreenType: ScreenTypes()
     }
 
-    data class TodoScreen(val routerDependencies: RouterDependencies) : Screens(){
-
-        private val builder = TodoBuilder()
-        private val router = builder.build(routerDependencies)
+    class TodoScreen(routerDependencies: RouterDependencies) : Screens(){
+        private val router = TodoRouter(routerDependencies)
 
         override fun router(): Router {
             return router
@@ -26,10 +23,5 @@ sealed class Screens: Screen{
             return ScreenTypes.TodoScreenType
         }
 
-        inner class TodoBuilder : Builder() {
-            override fun build(dependencies: RouterDependencies): TodoRouter {
-                return TodoRouter(dependencies)
-            }
-        }
     }
 }

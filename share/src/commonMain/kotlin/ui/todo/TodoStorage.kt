@@ -1,7 +1,7 @@
 package com.linya.utils.ui.todo
 
+import com.linya.utils.interfaces.StorageView
 import com.linya.utils.mvi.Storage
-import com.linya.utils.mvi.StorageView
 
 
 class TodoStorage(storageView : StorageView<TodoWish, TodoState>): Storage<TodoStorage.TodoWish, TodoStorage.TodoState, TodoStorage.TodoEffect>(

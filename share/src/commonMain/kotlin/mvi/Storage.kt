@@ -1,6 +1,7 @@
 package com.linya.utils.mvi
 
 import com.linya.utils.dispatcher
+import com.linya.utils.interfaces.StorageView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
