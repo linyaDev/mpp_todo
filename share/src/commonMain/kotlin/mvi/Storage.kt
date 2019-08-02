@@ -7,8 +7,10 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.consumeEach
 
+
+typealias Store<Wish,State> = Storage<Wish,State,*,*>
 @ExperimentalCoroutinesApi
-abstract class Storage<Wish,State,Effect>(
+abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
         val renderView : RenderView<Wish,State>,
         private val initState : State,
         private val actor: Actor<Wish,State,Effect>,
@@ -26,20 +28,6 @@ abstract class Storage<Wish,State,Effect>(
             }
         }
 
-    }
-
-    fun activate(){
-        //this.renderView = renderView
-        GlobalScope.launch(dispatcher) {
-
-        }
-    }
-    fun deactivate(){
-        //this.renderView  = null
-    }
-
-    interface PresenterListener<State>{
-        fun render(state: State)
     }
 
     interface Emitter<T>{
@@ -66,15 +54,11 @@ abstract class Storage<Wish,State,Effect>(
     }
 
     fun accept(wish: Wish){
-        println("accept !" + wish)
         val emitter = object : Emitter<Effect>{
             override fun send(effect: Effect) {
-                println("effect !" + effect)
                 GlobalScope.launch(dispatcher) {
                     channel.send(effect)
                 }
-
-
             }
         }
 

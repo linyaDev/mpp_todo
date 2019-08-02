@@ -6,12 +6,13 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.linya.utils.mvi.Storage
+import com.linya.utils.mvi.Store
 import com.linya.utils.ui.todo.TodoStorage
 import com.linya.utils.ui.todo.TodoStorageView
 import com.linya.utils.ui.todo.TodoViewTypes
 
 class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
-    var storage: Storage<TodoStorage.TodoWish,TodoStorage.TodoState,out Any>? = null
+    var storage: Store<TodoStorage.TodoWish, TodoStorage.TodoState>? = null
     val username: EditText
     val password: EditText
 
@@ -39,14 +40,14 @@ class TodoView(context: Context) : FrameLayout(context), TodoStorageView {
         val x = 0
     }
 
-    override fun setupPresenter(presenter: Storage<TodoStorage.TodoWish, TodoStorage.TodoState, out Any>) {
+    override fun setupPresenter(presenter: Store<TodoStorage.TodoWish, TodoStorage.TodoState>) {
         this.storage = storage
         android.os.Handler().postDelayed(
-            {
-                this.storage?.accept(TodoStorage.TodoWish.AddTodo)
+                {
+                    this.storage?.accept(TodoStorage.TodoWish.AddTodo)
 
-            },
-            2000L
+                },
+                2000L
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.linya.utils.interfaces
 
 import com.linya.utils.mvi.Storage
+import com.linya.utils.mvi.Store
 import com.linya.utils.router.Router
 
 // Screens
@@ -15,11 +16,10 @@ interface Screen{
 interface  ViewType
 
 // view for mvi render
-interface RenderView<Wish,State>{
+interface RenderView<Wish: Any,State : Any>{
     fun render(state: State)
 
-    fun setupPresenter(presenter: Storage<Wish, State, out Any>)
-
+    fun setupPresenter(presenter: Store<Wish, State>)
     //optional for animation
     fun haveRemoveAnimation():Boolean{ return false }
     fun removeFromParentViewAnimated(listener : AnimationListener){}
