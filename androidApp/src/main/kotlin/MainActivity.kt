@@ -2,7 +2,7 @@ package org.linya.todo.multiplatform
 
 import android.app.Application
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
