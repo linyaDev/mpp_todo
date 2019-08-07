@@ -17,7 +17,11 @@ abstract class Router(private val dependencies: RouterDependencies) {
 
     fun removeInteractor(interactor: Storage<out Any,out Any,out Any,out Any>){
         if (isAttached) {
-            dependencies.viewHolder().removeView(interactor.renderView)
+            if (interactor.renderView.haveRemoveAnimation()) {
+                dependencies.viewHolder().removeAnimated(interactor.renderView)
+            }else{
+                dependencies.viewHolder().removeView(interactor.renderView)
+            }
         }
         interactors.remove(interactor)
     }

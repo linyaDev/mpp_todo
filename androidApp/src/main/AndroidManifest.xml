@@ -5,14 +5,14 @@
                  android:allowBackup="false"
                  android:supportsRtl="false"
                  android:theme="@style/AppTheme"
-                 android:label="Todo native"
-        >
+                 android:label="Todo native">
 
     <activity
         android:name=".MainActivity"
         android:theme="@style/AppTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>

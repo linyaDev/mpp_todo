@@ -9,6 +9,8 @@ import android.widget.FrameLayout
 import com.linya.utils.interfaces.*
 import com.linya.utils.ui.RootRouter
 import com.linya.utils.ui.todo.TodoViewTypes
+import org.linya.todo.multiplatform.ui.todo.TodoAddTask
+import org.linya.todo.multiplatform.ui.todo.TodoMenu
 import org.linya.todo.multiplatform.ui.todo.TodoView
 
 class MyApplication : Application() {
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         rootView = FrameLayout(this)
         setContentView(rootView)
 
+        actionBar?.hide()
+        supportActionBar?.hide()
         rootRouter.activate(this)
     }
 
@@ -50,8 +54,11 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
 
     override fun createView(viewType: ViewType): RenderView<out Any,out  Any,out Any>? {
         if(viewType is TodoViewTypes){
-            when(viewType){
-                TodoViewTypes.TodoTable -> return TodoView(this)
+            return when(viewType){
+                TodoViewTypes.TodoTable ->  TodoView(this)
+                TodoViewTypes.TodoMenu -> TodoMenu(this)
+                TodoViewTypes.TodoAddTask -> TodoAddTask(this)
+                else -> null
             }
         }
 
@@ -64,9 +71,20 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
         }
     }
 
+    override fun removeAnimated(renderView: RenderView<out Any, out Any, out Any>) {
+        if (renderView is View) {
+            renderView.removeFromParentViewAnimated(object : RenderView.AnimationListener {
+                override fun animationEnded() {
+                    rootView.removeView(renderView)
+                }
+            })
+        }
+    }
+
     override fun removeView(renderView: RenderView<out Any, out Any, out Any>) {
         if (renderView is View) {
             rootView.removeView(renderView)
         }
+
     }
 }
