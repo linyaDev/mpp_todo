@@ -10,7 +10,8 @@ import UIKit
 import share
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate/*, ViewCreator, ViewHolder, OSDependencies*/{
+class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, OSDependencies{
+  
    
     var window: UIWindow?
     var router: RootRouter?
@@ -22,17 +23,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate/*, ViewCreator, ViewHolder
         
         rootViewController = ViewController()
         window?.rootViewController = rootViewController
-        /*
-        let router = RootBuilder().build()
+        
+        let router = RootRouter()
         self.router = router
-        router.activate(dependencies: self)*/
+        router.activate(dependencies: self)/**/
         window?.makeKeyAndVisible()
         
         //debug
-        let taskView = TasksView(frame: rootViewController!.view.bounds)
-        rootViewController?.view.addSubview(taskView)
+        //let taskView =
+        //rootViewController?.view.addSubview(taskView)
         return true
     }
+    
+    func createView(viewType: ViewType) -> RenderView? {
+       
+        if viewType is TodoViewTypes {
+            let type = viewType as! TodoViewTypes
+            switch type {
+            case TodoViewTypes.todotable:
+                return TasksView(frame: rootViewController!.view.bounds)
+            default:
+                break
+            }
+        }
+        
+        /*
+        TodoViewTypes.TodoTable ->  TodoMainView(this)
+        TodoViewTypes.TodoMenu -> TodoTasksMenu(this)
+        TodoViewTypes.TodoAddTask -> TodoAddTask(this)*/
+        //viewType.
+       
+        return nil
+    }
+    
+    func addView(renderView: RenderView) {
+        if (renderView is UIView) {
+            rootViewController?.view.addSubview(renderView as! UIView)
+        }
+    }
+    
+    func removeView(renderView: RenderView) {
+        if (renderView is UIView) {
+           let view = renderView as! UIView
+           view.removeFromSuperview()
+        }
+    }
+    
+    func removeAnimated(renderView: RenderView) {
+        
+    }
+    
+    func viewCreator() -> ViewCreator {
+       return self
+    }
+    
+    func viewHolder() -> ViewHolder {
+       return self
+    }
+    
     /*
     func createView(screenType: Screen.ScreenType) -> Screen {
         return  Screen(renderView: TasksView(frame: rootViewController!.view.bounds), storageViewType: Screen.ScreenType.login)
@@ -48,9 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate/*, ViewCreator, ViewHolder
     
     func addView(storageView: Screen){
         let view = storageView.renderView
-        if (view is UIView) {
-            rootViewController?.view.addSubview(view as! UIView)
-        }
+     
     }
     
     func removeView(storageView: Screen) {

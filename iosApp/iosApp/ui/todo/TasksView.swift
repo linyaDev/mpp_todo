@@ -8,8 +8,8 @@
 import UIKit
 import share
 
-class TasksView: UIView /*, TodoStorageView*/{
-
+class TasksView: UIView , RenderView{
+   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTodoButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
@@ -21,11 +21,27 @@ class TasksView: UIView /*, TodoStorageView*/{
     private let tasksAdapter = TasksAdapter()
     
     @IBAction func menuPressed(_ sender: Any) {
-        presenter.accept(wish: TodoStorage.TodoWishAddTodo())
+        //presenter.accept(wish: TodoStorage.TodoWishAddTodo())
     }
     
     @IBAction func todoPressed(_ sender: Any) {
         //presenter.accept(wish: TodoStorage.TodoWishLogin())
+    }
+    
+    func render(state: Any) {
+        
+    }
+    
+    func setupPresenter(presenter: Storage) {
+        
+    
+    }
+    
+    func haveRemoveAnimation() -> Bool {
+        return false
+    }
+    
+    func removeFromParentViewAnimated(listener: RenderViewAnimationListener) {
     }
     
     /*
@@ -46,21 +62,22 @@ class TasksView: UIView /*, TodoStorageView*/{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initNib()
         initialaze()
     }
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
+        initNib()
         initialaze()
     }
     
     func initialaze(){
-        setupSelf()
         setupTableView()
         drawShadow()
     }
     
-    private func setupSelf(){
+    private func initNib(){
         Bundle.main.loadNibNamed("TasksView", owner: self, options: nil)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
@@ -70,9 +87,14 @@ class TasksView: UIView /*, TodoStorageView*/{
     private func setupTableView(){
         tableView.dataSource = tasksAdapter
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         let todoCellNib = UINib.init(nibName: "TodoCell", bundle: nil)
+        let headerTodoCellNib = UINib.init(nibName: "HeaderTodoCell", bundle: nil)
         
         self.tableView.register(todoCellNib, forCellReuseIdentifier: "TodoCell")
+        self.tableView.register(headerTodoCellNib, forCellReuseIdentifier: "HeaderTodoCell")
     }
     
     private func drawShadow(){

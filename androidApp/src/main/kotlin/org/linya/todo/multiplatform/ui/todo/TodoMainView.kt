@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.linya.utils.mvi.Store
@@ -24,7 +25,10 @@ class TodoMainView(context: Context) : FrameLayout(context), TodoMainRenderView 
         val fab = findViewById<View>(R.id.fab)
 
         val listView = findViewById<RecyclerView>(R.id.listView)
-        listView.adapter
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = RecyclerView.VERTICAL
+        listView.layoutManager = layoutManager
+        listView.adapter = adapter
 
         fab.setOnClickListener{
             this.mainStorage?.accept(TodoMainStorage.TodoWish.ShowAddTask)

@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8C214B6122E6161900F3BA1D /* share.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C214B5422E6115500F3BA1D /* share.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8C214B6A22F1AD0200F3BA1D /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214B6822F1AD0200F3BA1D /* TasksView.swift */; };
-		8C214B6B22F1AD0200F3BA1D /* TasksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C214B6922F1AD0200F3BA1D /* TasksView.xib */; };
-		8C214B6D22F1B1CD00F3BA1D /* TasksAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214B6C22F1B1CD00F3BA1D /* TasksAdapter.swift */; };
-		8C214B6F22F1B22500F3BA1D /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214B6E22F1B22500F3BA1D /* TaskCell.swift */; };
 		8C214B7122F1D75500F3BA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C214B7022F1D75500F3BA1D /* ViewController.swift */; };
-		8C456E2322F3405D00F77D7B /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E2122F3405D00F77D7B /* TodoCell.xib */; };
-		8C456E2422F3405D00F77D7B /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E2222F3405D00F77D7B /* TodoCell.swift */; };
+		8C456E3422FADF5B00F77D7B /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3022FADF5B00F77D7B /* TasksView.swift */; };
+		8C456E3522FADF5B00F77D7B /* TasksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E3122FADF5B00F77D7B /* TasksView.xib */; };
+		8C456E3722FADF5B00F77D7B /* TasksAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3322FADF5B00F77D7B /* TasksAdapter.swift */; };
+		8C456E3D22FADFA800F77D7B /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E3922FADFA800F77D7B /* TodoCell.xib */; };
+		8C456E3E22FADFA800F77D7B /* HeaderTodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E3A22FADFA800F77D7B /* HeaderTodoCell.xib */; };
+		8C456E3F22FADFA800F77D7B /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3B22FADFA800F77D7B /* TodoCell.swift */; };
+		8C456E4022FADFA800F77D7B /* HeaderTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3C22FADFA800F77D7B /* HeaderTodoCell.swift */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
 		F861D7E8207FA4100085E80D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E7207FA4100085E80D /* Assets.xcassets */; };
@@ -57,13 +58,14 @@
 		8C214B5422E6115500F3BA1D /* share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C214B5622E6115500F3BA1D /* share.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = share.h; sourceTree = "<group>"; };
 		8C214B5722E6115500F3BA1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C214B6822F1AD0200F3BA1D /* TasksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
-		8C214B6922F1AD0200F3BA1D /* TasksView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TasksView.xib; sourceTree = "<group>"; };
-		8C214B6C22F1B1CD00F3BA1D /* TasksAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksAdapter.swift; sourceTree = "<group>"; };
-		8C214B6E22F1B22500F3BA1D /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		8C214B7022F1D75500F3BA1D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8C456E2122F3405D00F77D7B /* TodoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
-		8C456E2222F3405D00F77D7B /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
+		8C456E3022FADF5B00F77D7B /* TasksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksView.swift; path = iosApp/ui/todo/TasksView.swift; sourceTree = SOURCE_ROOT; };
+		8C456E3122FADF5B00F77D7B /* TasksView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TasksView.xib; path = iosApp/ui/todo/TasksView.xib; sourceTree = SOURCE_ROOT; };
+		8C456E3322FADF5B00F77D7B /* TasksAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksAdapter.swift; path = iosApp/ui/todo/TasksAdapter.swift; sourceTree = SOURCE_ROOT; };
+		8C456E3922FADFA800F77D7B /* TodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TodoCell.xib; path = iosApp/ui/todo/cells/TodoCell.xib; sourceTree = SOURCE_ROOT; };
+		8C456E3A22FADFA800F77D7B /* HeaderTodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HeaderTodoCell.xib; path = iosApp/ui/todo/cells/HeaderTodoCell.xib; sourceTree = SOURCE_ROOT; };
+		8C456E3B22FADFA800F77D7B /* TodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodoCell.swift; path = iosApp/ui/todo/cells/TodoCell.swift; sourceTree = SOURCE_ROOT; };
+		8C456E3C22FADFA800F77D7B /* HeaderTodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTodoCell.swift; path = iosApp/ui/todo/cells/HeaderTodoCell.swift; sourceTree = SOURCE_ROOT; };
 		F861D7DD207FA40F0085E80D /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7E0207FA40F0085E80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F861D7E5207FA40F0085E80D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,15 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3EF2BA3722ED7F3B007A8411 /* com.linya.todo.multiplatform.ui */ = {
-			isa = PBXGroup;
-			children = (
-				8C214B6722F1AB6C00F3BA1D /* menu */,
-				8C214B6622F1AB6300F3BA1D /* todo */,
-			);
-			path = com.linya.todo.multiplatform.ui;
-			sourceTree = "<group>";
-		};
 		8C214B5522E6115500F3BA1D /* share */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,24 +104,35 @@
 			path = share;
 			sourceTree = "<group>";
 		};
-		8C214B6622F1AB6300F3BA1D /* todo */ = {
+		8C456E2E22FADF2500F77D7B /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				8C214B6822F1AD0200F3BA1D /* TasksView.swift */,
-				8C214B6922F1AD0200F3BA1D /* TasksView.xib */,
-				8C214B6C22F1B1CD00F3BA1D /* TasksAdapter.swift */,
-				8C214B6E22F1B22500F3BA1D /* TaskCell.swift */,
-				8C456E2122F3405D00F77D7B /* TodoCell.xib */,
-				8C456E2222F3405D00F77D7B /* TodoCell.swift */,
+				8C456E2F22FADF3800F77D7B /* todo */,
+			);
+			name = ui;
+			path = "гш";
+			sourceTree = "<group>";
+		};
+		8C456E2F22FADF3800F77D7B /* todo */ = {
+			isa = PBXGroup;
+			children = (
+				8C456E3822FADF8F00F77D7B /* todo */,
+				8C456E3322FADF5B00F77D7B /* TasksAdapter.swift */,
+				8C456E3022FADF5B00F77D7B /* TasksView.swift */,
+				8C456E3122FADF5B00F77D7B /* TasksView.xib */,
 			);
 			path = todo;
 			sourceTree = "<group>";
 		};
-		8C214B6722F1AB6C00F3BA1D /* menu */ = {
+		8C456E3822FADF8F00F77D7B /* todo */ = {
 			isa = PBXGroup;
 			children = (
+				8C456E3C22FADFA800F77D7B /* HeaderTodoCell.swift */,
+				8C456E3A22FADFA800F77D7B /* HeaderTodoCell.xib */,
+				8C456E3B22FADFA800F77D7B /* TodoCell.swift */,
+				8C456E3922FADFA800F77D7B /* TodoCell.xib */,
 			);
-			path = menu;
+			path = todo;
 			sourceTree = "<group>";
 		};
 		F861D7D4207FA40F0085E80D = {
@@ -154,7 +158,7 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				3EF2BA3722ED7F3B007A8411 /* com.linya.todo.multiplatform.ui */,
+				8C456E2E22FADF2500F77D7B /* ui */,
 				8C214B7022F1D75500F3BA1D /* ViewController.swift */,
 				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
@@ -275,11 +279,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C456E3E22FADFA800F77D7B /* HeaderTodoCell.xib in Resources */,
 				F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */,
-				8C214B6B22F1AD0200F3BA1D /* TasksView.xib in Resources */,
 				F861D7E8207FA4100085E80D /* Assets.xcassets in Resources */,
-				8C456E2322F3405D00F77D7B /* TodoCell.xib in Resources */,
 				F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */,
+				8C456E3D22FADFA800F77D7B /* TodoCell.xib in Resources */,
+				8C456E3522FADF5B00F77D7B /* TasksView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,11 +323,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C214B7122F1D75500F3BA1D /* ViewController.swift in Sources */,
-				8C456E2422F3405D00F77D7B /* TodoCell.swift in Sources */,
-				8C214B6D22F1B1CD00F3BA1D /* TasksAdapter.swift in Sources */,
-				8C214B6A22F1AD0200F3BA1D /* TasksView.swift in Sources */,
+				8C456E3422FADF5B00F77D7B /* TasksView.swift in Sources */,
+				8C456E4022FADFA800F77D7B /* HeaderTodoCell.swift in Sources */,
+				8C456E3722FADF5B00F77D7B /* TasksAdapter.swift in Sources */,
+				8C456E3F22FADFA800F77D7B /* TodoCell.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
-				8C214B6F22F1B22500F3BA1D /* TaskCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

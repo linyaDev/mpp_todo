@@ -11,9 +11,9 @@ import share
 
 class TasksAdapter : NSObject, UITableViewDataSource{
     
-    var todoList : [TodoStorage.TodoModel] = []
+    var todoList : [TodoModel] = []
     
-    func updateData(list : [TodoStorage.TodoModel]){
+    func updateData(list : [TodoModel]){
         todoList = list
     }
     
@@ -22,10 +22,10 @@ class TasksAdapter : NSObject, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row != 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoCell
+        if(indexPath.row == 0){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTodoCell", for: indexPath) as! HeaderTodoCell
             //let todoModel = todoList[indexPath.row]
-            cell.title.text = "Задачи"//todoModel.title
+            //cell.title.text = "My tasks"todoModel.title
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoCell

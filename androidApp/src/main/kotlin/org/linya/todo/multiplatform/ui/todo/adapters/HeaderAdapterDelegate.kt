@@ -17,7 +17,7 @@ class HeaderAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelHead
     }
 
     override fun isForViewType(item: TodoModel, items: MutableList<TodoModel>, position: Int): Boolean {
-        return item is TodoModel.TodoModelHeader
+        return true //item is TodoModel.TodoModelHeader
     }
 
     override fun onBindViewHolder(item: TodoModel.TodoModelHeader, holder: HeaderViewHolder, payloads: MutableList<Any>) {
