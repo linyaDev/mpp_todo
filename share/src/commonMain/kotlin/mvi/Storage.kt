@@ -3,9 +3,7 @@ package com.linya.utils.mvi
 import com.linya.utils.dispatcher
 import com.linya.utils.interfaces.RenderView
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.*
 
 
 typealias Store<Wish,State> = Storage<Wish,State,*,*>
@@ -19,6 +17,11 @@ abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
 ){
     private val stateChannel = ConflatedBroadcastChannel<State>()
     private val wishChannel = Channel<Pair<Wish,Effect>>()
+    private val newsListeners = mutableListOf<NewsListener<News>>()
+
+    interface NewsListener<News> {
+        fun processNews(state: News) {}
+    }
 
     init {
 
@@ -56,7 +59,9 @@ abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
                 stateChannel.offer(newState)
                 val news = newsPublisher?.invokeNewsPublisher(pair.first,pair.second,newState)
                 if(news!=null){
-                    renderView.processNews(news)
+                    newsListeners.forEach {
+                        it.processNews(news)
+                    }
                 }
             }
         }
@@ -74,8 +79,13 @@ abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
         actor.invoke(stateChannel.value,wish,emitter)
     }
 
-    fun dismiss(){
+    fun close(){
         wishChannel.close()
         stateChannel.close()
     }
+
+    fun addNewsListener(listener: NewsListener<News>){
+        newsListeners.add(listener)
+    }
+
 }
