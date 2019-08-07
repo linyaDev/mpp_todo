@@ -3,22 +3,29 @@ package org.linya.todo.multiplatform.ui.todo
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.MenuInflater
+import android.view.View
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.linya.utils.mvi.Store
 import com.linya.utils.ui.todo.TodoMainStorage
 import com.linya.utils.ui.todo.TodoMainRenderView
 import org.linya.todo.multiplatform.R
+import org.linya.todo.multiplatform.ui.todo.adapters.TasksAdapter
 
-class TodoView(context: Context) : FrameLayout(context), TodoMainRenderView {
+class TodoMainView(context: Context) : FrameLayout(context), TodoMainRenderView {
     private var mainStorage: Store<TodoMainStorage.TodoWish, TodoMainStorage.TodoState>? = null
+    private val adapter = TasksAdapter()
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_todo , this, true)
 
         val bar = findViewById<BottomAppBar>(R.id.bottom_app_bar)
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        val fab = findViewById<View>(R.id.fab)
+
+        val listView = findViewById<RecyclerView>(R.id.listView)
+        listView.adapter
 
         fab.setOnClickListener{
             this.mainStorage?.accept(TodoMainStorage.TodoWish.ShowAddTask)
@@ -36,7 +43,8 @@ class TodoView(context: Context) : FrameLayout(context), TodoMainRenderView {
     }
 
     override fun render(state: TodoMainStorage.TodoState) {
-        val x = 0
+        adapter.items = state.todoList
+        adapter.notifyDataSetChanged()
     }
 
 

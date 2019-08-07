@@ -10,8 +10,8 @@ import com.linya.utils.interfaces.*
 import com.linya.utils.ui.RootRouter
 import com.linya.utils.ui.todo.TodoViewTypes
 import org.linya.todo.multiplatform.ui.todo.TodoAddTask
-import org.linya.todo.multiplatform.ui.todo.TodoMenu
-import org.linya.todo.multiplatform.ui.todo.TodoView
+import org.linya.todo.multiplatform.ui.todo.TodoTasksMenu
+import org.linya.todo.multiplatform.ui.todo.TodoMainView
 
 class MyApplication : Application() {
     override fun onCreate() {
@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolde
     override fun createView(viewType: ViewType): RenderView<out Any,out  Any,out Any>? {
         if(viewType is TodoViewTypes){
             return when(viewType){
-                TodoViewTypes.TodoTable ->  TodoView(this)
-                TodoViewTypes.TodoMenu -> TodoMenu(this)
+                TodoViewTypes.TodoTable ->  TodoMainView(this)
+                TodoViewTypes.TodoMenu -> TodoTasksMenu(this)
                 TodoViewTypes.TodoAddTask -> TodoAddTask(this)
                 else -> null
             }

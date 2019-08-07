@@ -14,7 +14,7 @@ import com.linya.utils.ui.todo.TodoAddTaskStorage
 import com.linya.utils.ui.todo.TodoMenuStorage
 import org.linya.todo.multiplatform.R
 
-class TodoMenu(context: Context) : FrameLayout(context), TodoMenuRenderView {
+class TodoTasksMenu(context: Context) : FrameLayout(context), TodoMenuRenderView {
     private var storage: Store<TodoMenuStorage.TodoMenuWish, TodoMenuStorage.TodoMenuState>? = null
     private val menu: View
 
