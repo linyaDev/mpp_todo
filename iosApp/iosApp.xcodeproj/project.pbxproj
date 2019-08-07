@@ -93,13 +93,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3EF2BA3722ED7F3B007A8411 /* ui */ = {
+		3EF2BA3722ED7F3B007A8411 /* com.linya.todo.multiplatform.ui */ = {
 			isa = PBXGroup;
 			children = (
 				8C214B6722F1AB6C00F3BA1D /* menu */,
 				8C214B6622F1AB6300F3BA1D /* todo */,
 			);
-			path = ui;
+			path = com.linya.todo.multiplatform.ui;
 			sourceTree = "<group>";
 		};
 		8C214B5522E6115500F3BA1D /* share */ = {
@@ -154,7 +154,7 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				3EF2BA3722ED7F3B007A8411 /* ui */,
+				3EF2BA3722ED7F3B007A8411 /* com.linya.todo.multiplatform.ui */,
 				8C214B7022F1D75500F3BA1D /* ViewController.swift */,
 				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,

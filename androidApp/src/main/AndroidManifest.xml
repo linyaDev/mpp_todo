@@ -1,14 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.linya.todo.multiplatform">
     <application
-                 android:name=".MyApplication"
+                 android:name="ui.MainApplication"
                  android:allowBackup="false"
                  android:supportsRtl="false"
                  android:theme="@style/AppTheme"
                  android:label="Todo native">
 
     <activity
-        android:name=".MainActivity"
+        android:name="ui.MainActivity"
         android:theme="@style/AppTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

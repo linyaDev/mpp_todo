@@ -6,12 +6,11 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#33000000"
+    tools:context="ui.MainActivity"
+    android:background="#11000000"
     android:clickable="true"
     android:focusable="true"
     >
-
 
     <LinearLayout
         android:id="@+id/menu"
@@ -21,6 +20,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#ffffff"
         android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
         >
 
         <EditText
@@ -38,11 +40,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Text task"
-            android:visibility="gone"
             />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/subjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_subject"
+                android:backgroundTint="@color/primaryColor"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                />
 
             <Button
                 android:id="@+id/submit"
@@ -50,8 +61,6 @@
                 android:layout_height="wrap_content"
                 android:text="save"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 />
 
         </RelativeLayout>
