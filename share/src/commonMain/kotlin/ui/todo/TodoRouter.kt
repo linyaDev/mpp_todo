@@ -57,7 +57,7 @@ class TodoRouter(private val dependencies: RouterDependencies): Router(dependenc
 
         val storageView = dependencies.viewCreator().createView(TodoViewTypes.TodoAddTask) as? TodoAddTaskRenderView
         if (storageView!=null) {
-            val interactor = TodoAddTaskStorage(storageView,this)
+            val interactor = TodoAddTaskStorage(storageView,this,mainStorage)
             storageView.setupPresenter(interactor)
             addInteractor(interactor)
             addTaskStorage = interactor

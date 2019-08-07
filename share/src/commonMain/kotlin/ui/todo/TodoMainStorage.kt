@@ -17,7 +17,8 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
     sealed class TodoWish{
         object ShowMenu : TodoWish()
         object ShowFilter : TodoWish()
-        object AddTask: TodoWish()
+        object ShowAddTask: TodoWish()
+        data class AddTask(val todo: TodoModel): TodoWish()
         data class RemoveTodo(val todo: TodoModel): TodoWish()
     }
     sealed class TodoNews{
@@ -35,16 +36,23 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
         override fun invoke(state: TodoState, wish: TodoWish, channel: Emitter<TodoEffect>) {
             when(wish){
                 is TodoWish.ShowMenu -> router.openMenu()
-                is TodoWish.ShowFilter -> router.openMenu()
-                is TodoWish.AddTask -> router.openMenu()
-                else -> channel.send(TodoEffect.AddTodo(TodoModel.TodoModelNote("TestModel","This is test model")))
+                is TodoWish.ShowFilter -> router.openFilter()
+                is TodoWish.ShowAddTask -> router.openAddTask()
+                is TodoWish.AddTask -> channel.send(TodoEffect.AddTodo(wish.todo))
+                //else -> channel.send(TodoEffect.AddTodo(TodoModel.TodoModelNote("TestModel","This is test model")))
             }
         }
     }
 
     class TodoReducer: Reducer<TodoState, TodoEffect>{
         override fun reduce(state: TodoState, effect: TodoEffect): TodoState {
-            return state
+            when(effect){
+                is TodoEffect.AddTodo -> {
+                    val list = state.todoList.toMutableList()
+                    list.add(effect.todo)
+                    return state.copy(todoList = list)
+                }
+            }
         }
     }
 

@@ -6,22 +6,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import com.linya.utils.interfaces.RenderView
 import com.linya.utils.mvi.Store
 import com.linya.utils.ui.todo.TodoAddTaskRenderView
-import com.linya.utils.ui.todo.TodoMenuRenderView
 import com.linya.utils.ui.todo.TodoAddTaskStorage
+import com.linya.utils.ui.todo.models.TodoModel
 import org.linya.todo.multiplatform.R
 
 class TodoAddTask(context: Context) : FrameLayout(context), TodoAddTaskRenderView {
-    private var storage: Store<TodoAddTaskStorage.TodoMenuWish, TodoAddTaskStorage.TodoMenuState>? = null
+    private var storage: Store<TodoAddTaskStorage.TodoAddWish, TodoAddTaskStorage.TodoAddState>? = null
     private val menu: View
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_todo_add, this, true)
-        val root = findViewById<View>(R.id.root)
-
         menu = findViewById(R.id.menu)
 
         setupClickListeners()
@@ -30,9 +30,18 @@ class TodoAddTask(context: Context) : FrameLayout(context), TodoAddTaskRenderVie
 
     private fun setupClickListeners() {
         val root = findViewById<View>(R.id.root)
+        val submit = findViewById<Button>(R.id.submit)
+        val taskTitle = findViewById<EditText>(R.id.taskTitle)
+
         root.setOnClickListener {
-            this.storage?.accept(TodoAddTaskStorage.TodoMenuWish.CloseMenu)
+            this.storage?.accept(TodoAddTaskStorage.TodoAddWish.CloseAddTaskMenu)
         }
+
+        submit.setOnClickListener {
+            taskTitle.text.clear()
+            this.storage?.accept(TodoAddTaskStorage.TodoAddWish.AddTask(TodoModel.TodoModelNote(taskTitle.text.toString())))
+        }
+
     }
 
     private fun setupStartAnimation(){
@@ -49,9 +58,9 @@ class TodoAddTask(context: Context) : FrameLayout(context), TodoAddTaskRenderVie
         menu.viewTreeObserver.addOnPreDrawListener(onPreDrawListener)
     }
 
-    override fun render(state: TodoAddTaskStorage.TodoMenuState) {}
+    override fun render(state: TodoAddTaskStorage.TodoAddState) {}
 
-    override fun setupPresenter(presenter: Store<TodoAddTaskStorage.TodoMenuWish, TodoAddTaskStorage.TodoMenuState>) {
+    override fun setupPresenter(presenter: Store<TodoAddTaskStorage.TodoAddWish, TodoAddTaskStorage.TodoAddState>) {
         storage = presenter
     }
 
@@ -67,7 +76,7 @@ class TodoAddTask(context: Context) : FrameLayout(context), TodoAddTaskRenderVie
                         listener.animationEnded()
                     }
                 }
-        ).setDuration(500).start()
+        ).setDuration(300).start()
     }
 
 

@@ -2,35 +2,43 @@ package com.linya.utils.ui.todo
 
 import com.linya.utils.interfaces.RenderView
 import com.linya.utils.mvi.Storage
+import com.linya.utils.ui.todo.models.TodoModel
 
-typealias TodoAddTaskRenderView = RenderView<TodoAddTaskStorage.TodoMenuWish, TodoAddTaskStorage.TodoMenuState,TodoAddTaskStorage.TodoMenuNews>
+typealias TodoAddTaskRenderView = RenderView<TodoAddTaskStorage.TodoAddWish, TodoAddTaskStorage.TodoAddState,TodoAddTaskStorage.TodoAddNews>
 
-class TodoAddTaskStorage(renderView : RenderView<TodoMenuWish, TodoMenuState,TodoMenuNews>, router: TodoRouterActions):
-        Storage<TodoAddTaskStorage.TodoMenuWish, TodoAddTaskStorage.TodoMenuState, TodoAddTaskStorage.TodoMenuEffect,TodoAddTaskStorage.TodoMenuNews>(
+class TodoAddTaskStorage(renderView : RenderView<TodoAddWish, TodoAddState,TodoAddNews>,
+                         router: TodoRouterActions,
+                         storage: TodoMainStorage):
+        Storage<TodoAddTaskStorage.TodoAddWish, TodoAddTaskStorage.TodoAddState, TodoAddTaskStorage.TodoAddEffect,TodoAddTaskStorage.TodoAddNews>(
     renderView = renderView,
-    initState = TodoMenuState(),
-    actor = TodoMenuActor(router),
+    initState = TodoAddState(),
+    actor = TodoMenuActor(router,storage),
     reducer = TodoReducer()
 ){
 
-    sealed class TodoMenuWish{
-        object CloseMenu : TodoMenuWish()
+    sealed class TodoAddWish{
+        object CloseAddTaskMenu : TodoAddWish()
+        data class AddTask(val todo: TodoModel): TodoAddWish()
     }
-    sealed class TodoMenuNews{}
-    data class TodoMenuState(val name: String = "")
-    sealed class TodoMenuEffect{}
 
-    class TodoMenuActor(private val router: TodoRouterActions): Actor<TodoMenuWish, TodoMenuState, TodoMenuEffect>{
-        override fun invoke(state: TodoMenuState, wish: TodoMenuWish, channel: Emitter<TodoMenuEffect>) {
+    sealed class TodoAddNews{}
+    data class TodoAddState(val name: String = "")
+    sealed class TodoAddEffect{}
+
+    class TodoMenuActor(private val router: TodoRouterActions,
+                        private val mainStorage: TodoMainStorage): Actor<TodoAddWish, TodoAddState, TodoAddEffect>{
+        override fun invoke(state: TodoAddState, wish: TodoAddWish, channel: Emitter<TodoAddEffect>) {
             when(wish){
-                is TodoMenuWish.CloseMenu -> router.closeMenu()
-                //else -> channel.send(TodoMenuEffect.AddTask(TodoModel.TodoModelNote("TestModel","This is test model")))
+                is TodoAddWish.CloseAddTaskMenu -> router.closeAddTask()
+                is TodoAddWish.AddTask -> {
+                    mainStorage.accept(TodoMainStorage.TodoWish.AddTask(wish.todo))
+                }
             }
         }
     }
 
-    class TodoReducer: Reducer<TodoMenuState, TodoMenuEffect>{
-        override fun reduce(state: TodoMenuState, effect: TodoMenuEffect): TodoMenuState {
+    class TodoReducer: Reducer<TodoAddState, TodoAddEffect>{
+        override fun reduce(state: TodoAddState, effect: TodoAddEffect): TodoAddState {
             return state.copy()
         }
     }

@@ -16,7 +16,7 @@
     <LinearLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#ffffff"
@@ -24,10 +24,13 @@
         >
 
         <EditText
-            android:id="@+id/taskDesk"
+            android:id="@+id/taskTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="New task"
+            android:inputType="text"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             />
 
         <EditText
@@ -47,10 +50,11 @@
                 android:layout_height="wrap_content"
                 android:text="save"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 />
 
         </RelativeLayout>
-
 
     </LinearLayout>
 

@@ -21,7 +21,7 @@ class TodoView(context: Context) : FrameLayout(context), TodoMainRenderView {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
 
         fab.setOnClickListener{
-            this.mainStorage?.accept(TodoMainStorage.TodoWish.AddTask)
+            this.mainStorage?.accept(TodoMainStorage.TodoWish.ShowAddTask)
         }
 
         bar.setNavigationOnClickListener {
