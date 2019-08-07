@@ -16,6 +16,8 @@
 		8C456E3E22FADFA800F77D7B /* HeaderTodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E3A22FADFA800F77D7B /* HeaderTodoCell.xib */; };
 		8C456E3F22FADFA800F77D7B /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3B22FADFA800F77D7B /* TodoCell.swift */; };
 		8C456E4022FADFA800F77D7B /* HeaderTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E3C22FADFA800F77D7B /* HeaderTodoCell.swift */; };
+		8C456E4222FB176E00F77D7B /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C456E4122FB176E00F77D7B /* AddTaskView.swift */; };
+		8C456E4422FB179600F77D7B /* AddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C456E4322FB179600F77D7B /* AddTaskView.xib */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
 		F861D7E8207FA4100085E80D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E7207FA4100085E80D /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		8C456E3A22FADFA800F77D7B /* HeaderTodoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HeaderTodoCell.xib; path = iosApp/ui/todo/cells/HeaderTodoCell.xib; sourceTree = SOURCE_ROOT; };
 		8C456E3B22FADFA800F77D7B /* TodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TodoCell.swift; path = iosApp/ui/todo/cells/TodoCell.swift; sourceTree = SOURCE_ROOT; };
 		8C456E3C22FADFA800F77D7B /* HeaderTodoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTodoCell.swift; path = iosApp/ui/todo/cells/HeaderTodoCell.swift; sourceTree = SOURCE_ROOT; };
+		8C456E4122FB176E00F77D7B /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = iosApp/ui/todo/AddTaskView.swift; sourceTree = SOURCE_ROOT; };
+		8C456E4322FB179600F77D7B /* AddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddTaskView.xib; path = iosApp/ui/todo/AddTaskView.xib; sourceTree = SOURCE_ROOT; };
 		F861D7DD207FA40F0085E80D /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7E0207FA40F0085E80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F861D7E5207FA40F0085E80D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		8C456E2E22FADF2500F77D7B /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
 				8C456E2F22FADF3800F77D7B /* todo */,
 			);
 			name = ui;
@@ -120,6 +125,8 @@
 				8C456E3322FADF5B00F77D7B /* TasksAdapter.swift */,
 				8C456E3022FADF5B00F77D7B /* TasksView.swift */,
 				8C456E3122FADF5B00F77D7B /* TasksView.xib */,
+				8C456E4122FB176E00F77D7B /* AddTaskView.swift */,
+				8C456E4322FB179600F77D7B /* AddTaskView.xib */,
 			);
 			path = todo;
 			sourceTree = "<group>";
@@ -160,7 +167,6 @@
 			children = (
 				8C456E2E22FADF2500F77D7B /* ui */,
 				8C214B7022F1D75500F3BA1D /* ViewController.swift */,
-				F861D7E0207FA40F0085E80D /* AppDelegate.swift */,
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
 				F861D7E7207FA4100085E80D /* Assets.xcassets */,
 				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
@@ -279,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C456E4422FB179600F77D7B /* AddTaskView.xib in Resources */,
 				8C456E3E22FADFA800F77D7B /* HeaderTodoCell.xib in Resources */,
 				F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */,
 				F861D7E8207FA4100085E80D /* Assets.xcassets in Resources */,
@@ -323,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C214B7122F1D75500F3BA1D /* ViewController.swift in Sources */,
+				8C456E4222FB176E00F77D7B /* AddTaskView.swift in Sources */,
 				8C456E3422FADF5B00F77D7B /* TasksView.swift in Sources */,
 				8C456E4022FADFA800F77D7B /* HeaderTodoCell.swift in Sources */,
 				8C456E3722FADF5B00F77D7B /* TasksAdapter.swift in Sources */,

@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
             switch type {
             case TodoViewTypes.todotable:
                 return TasksView(frame: rootViewController!.view.bounds)
+            case TodoViewTypes.todoaddtask:
+                return AddTaskView(frame: rootViewController!.view.bounds)
             default:
                 break
             }

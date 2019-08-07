@@ -25,7 +25,7 @@ class TasksView: UIView , RenderView{
     }
     
     @IBAction func todoPressed(_ sender: Any) {
-        //presenter.accept(wish: TodoStorage.TodoWishLogin())
+        presenter.accept(wish: TodoMainStorage.TodoWishShowAddTask())
     }
     
     func render(state: Any) {
@@ -33,8 +33,7 @@ class TasksView: UIView , RenderView{
     }
     
     func setupPresenter(presenter: Storage) {
-        
-    
+        self.presenter = presenter
     }
     
     func haveRemoveAnimation() -> Bool {
@@ -72,17 +71,18 @@ class TasksView: UIView , RenderView{
         initialaze()
     }
     
-    func initialaze(){
-        setupTableView()
-        drawShadow()
-    }
-    
     private func initNib(){
         Bundle.main.loadNibNamed("TasksView", owner: self, options: nil)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         addSubview(contentView)
     }
+    
+    func initialaze(){
+        setupTableView()
+        drawShadow()
+    }
+    
     
     private func setupTableView(){
         tableView.dataSource = tasksAdapter

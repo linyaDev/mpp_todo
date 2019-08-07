@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TasksView" customModule="iosApp" customModuleProvider="target">
             <connections>
                 <outlet property="addTodoButton" destination="lMs-87-Zwu" id="wXR-sm-U2I"/>
-                <outlet property="contentView" destination="iN0-l3-epB" id="bff-yK-3j8"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="fNU-kT-THM"/>
                 <outlet property="menuButton" destination="7o6-LQ-ga1" id="cfI-3l-3Eq"/>
                 <outlet property="menuView" destination="MW0-qq-wEs" id="dZP-mV-2vX"/>
                 <outlet property="tableView" destination="Eq8-AD-69X" id="35V-ff-cq0"/>
