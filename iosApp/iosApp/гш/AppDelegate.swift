@@ -72,7 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
     }
     
     func removeAnimated(renderView: RenderView) {
-        
+        if(renderView.haveRemoveAnimation()){
+            renderView.removeFromParentViewAnimated(listener: <#T##RenderViewAnimationListener#>)
+        }
+       
     }
     
     func viewCreator() -> ViewCreator {

@@ -11,6 +11,7 @@ import share
 class AddTaskView: UIView , RenderView{
    
 
+    @IBOutlet var menu: UIView!
     @IBOutlet var contentView: UIView!
     private var presenter: Storage!
     
@@ -37,6 +38,12 @@ class AddTaskView: UIView , RenderView{
         let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(methodq))
         singleTapGesture.numberOfTapsRequired = 1
         contentView.addGestureRecognizer(singleTapGesture)
+        
+        self.menu.frame.origin.y = self.menu.frame.height
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menu.frame.origin.y = 0
+        }, completion: nil)
     }
     
     @objc func methodq(req:UITapGestureRecognizer) {
@@ -52,11 +59,20 @@ class AddTaskView: UIView , RenderView{
     }
     
     func haveRemoveAnimation() -> Bool {
-        return false
+        return true
     }
     
     func removeFromParentViewAnimated(listener: RenderViewAnimationListener) {
+       
+        let completion = { (finished: Bool) in
+            listener.animationEnded()
+        }
         
+        UIView.animate(withDuration: 0.3, animations: {
+             self.menu.frame.origin.y = self.menu.frame.height
+        }, completion: completion)
+        
+        //
     }
     
     
