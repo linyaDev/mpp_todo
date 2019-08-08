@@ -12,12 +12,12 @@ class HeaderAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelHead
 
 
     override fun onCreateViewHolder(parent: ViewGroup): HeaderViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_task , parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_task_header , parent, false)
         return HeaderViewHolder(view)
     }
 
     override fun isForViewType(item: TodoModel, items: MutableList<TodoModel>, position: Int): Boolean {
-        return true //item is TodoModel.TodoModelHeader
+        return item is TodoModel.TodoModelHeader
     }
 
     override fun onBindViewHolder(item: TodoModel.TodoModelHeader, holder: HeaderViewHolder, payloads: MutableList<Any>) {

@@ -8,7 +8,7 @@ import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import com.linya.utils.ui.todo.models.TodoModel
 import org.linya.todo.multiplatform.R
 
-class TasksAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelHeader,TodoModel,TasksAdapterDelegate.TaskViewHolder>(){
+class TasksAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelNote,TodoModel,TasksAdapterDelegate.TaskViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup): TaskViewHolder {
@@ -20,7 +20,7 @@ class TasksAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelHeade
         return item is TodoModel.TodoModelNote
     }
 
-    override fun onBindViewHolder(item: TodoModel.TodoModelHeader, holder: TaskViewHolder, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(item: TodoModel.TodoModelNote, holder: TaskViewHolder, payloads: MutableList<Any>) {
 
     }
 
