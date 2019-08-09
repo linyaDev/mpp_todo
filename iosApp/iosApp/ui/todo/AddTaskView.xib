@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,28 +14,42 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Er6-8e-qVI"/>
                 <outlet property="menu" destination="L5w-ge-Cr4" id="w9x-TV-k5O"/>
+                <outlet property="viewConstraint" destination="EFK-Gu-XqX" id="Cik-g5-We6"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ContentView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5w-ge-Cr4">
-                    <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                    <rect key="frame" x="0.0" y="696" width="414" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUp-gk-K1M">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="200"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="EFK-Gu-XqX"/>
+                                <constraint firstAttribute="width" id="X2Q-UU-M0D"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="jqg-jf-j0W"/>
+                        <constraint firstItem="KUp-gk-K1M" firstAttribute="leading" secondItem="L5w-ge-Cr4" secondAttribute="leading" id="Ub9-fs-hsj"/>
+                        <constraint firstItem="KUp-gk-K1M" firstAttribute="top" secondItem="L5w-ge-Cr4" secondAttribute="top" id="Zn6-o0-9Jy"/>
+                        <constraint firstAttribute="height" secondItem="KUp-gk-K1M" secondAttribute="height" id="vCn-Rh-0Cx"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.094850352112676062" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="L5w-ge-Cr4" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="CeU-G5-HKJ"/>
-                <constraint firstAttribute="bottom" secondItem="L5w-ge-Cr4" secondAttribute="bottom" id="E2M-tE-voM"/>
-                <constraint firstItem="L5w-ge-Cr4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KG4-ex-fxk"/>
+                <constraint firstItem="L5w-ge-Cr4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0Nb-mE-8Mx"/>
+                <constraint firstItem="L5w-ge-Cr4" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="CId-6N-Gxf"/>
+                <constraint firstItem="L5w-ge-Cr4" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="F4k-YS-NMc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>
 </document>

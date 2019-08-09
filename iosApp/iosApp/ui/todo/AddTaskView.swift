@@ -10,7 +10,7 @@ import share
 
 class AddTaskView: UIView , RenderView{
    
-
+    @IBOutlet var viewConstraint: NSLayoutConstraint!
     @IBOutlet var menu: UIView!
     @IBOutlet var contentView: UIView!
     private var presenter: Storage!
@@ -39,6 +39,7 @@ class AddTaskView: UIView , RenderView{
         singleTapGesture.numberOfTapsRequired = 1
         contentView.addGestureRecognizer(singleTapGesture)
         
+        viewConstraint.constant = 100
         self.menu.frame.origin.y = self.menu.frame.height
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -69,11 +70,9 @@ class AddTaskView: UIView , RenderView{
         }
         
         UIView.animate(withDuration: 0.3, animations: {
-             self.menu.frame.origin.y = self.menu.frame.height
+             self.menu.frame.origin.y += self.menu.frame.height
         }, completion: completion)
         
         //
     }
-    
-    
 }

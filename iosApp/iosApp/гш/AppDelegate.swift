@@ -71,11 +71,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
         }
     }
     
-    func removeAnimated(renderView: RenderView) {
-        if(renderView.haveRemoveAnimation()){
-            renderView.removeFromParentViewAnimated(listener: <#T##RenderViewAnimationListener#>)
+    class RemoveListener : RenderViewAnimationListener{
+        
+        let renderView: RenderView
+        
+        init(renderView: RenderView) {
+            self.renderView = renderView
         }
-       
+        
+        func animationEnded() {
+            if (renderView is UIView) {
+                let view = renderView as! UIView
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
+    func removeAnimated(renderView: RenderView) {
+        
+        if(renderView.haveRemoveAnimation()){
+            renderView.removeFromParentViewAnimated(listener: RemoveListener(renderView: renderView) )
+        }else{
+            removeView(renderView: renderView)
+        }
     }
     
     func viewCreator() -> ViewCreator {
