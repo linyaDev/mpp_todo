@@ -29,7 +29,9 @@ class TasksView: UIView , RenderView{
     }
     
     func render(state: Any) {
-        
+        let model  = state as! TodoMainStorage.TodoState
+        tasksAdapter.updateData(list: model.todoList)
+        tableView.reloadData()
     }
     
     func setupPresenter(presenter: Storage) {
@@ -42,22 +44,6 @@ class TasksView: UIView , RenderView{
     
     func removeFromParentViewAnimated(listener: RenderViewAnimationListener) {
     }
-    
-    /*
-    func render(state: Any?) {
-        let model  = state as! TodoStorage.TodoState
-        tasksAdapter.updateData(list: model.todoList)
-        tableView.reloadData()
-    }
-    
-    func getStorageView() -> Screen {
-        return Screen(renderView: self, storageViewType: Screen.ScreenType.login)
-    }
-    
-    func setupPresenter(presenter: Storage) {
-    
-        self.presenter  = presenter
-    }*/
     
     override init(frame: CGRect) {
         super.init(frame: frame)

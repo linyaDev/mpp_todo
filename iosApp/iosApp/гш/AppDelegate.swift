@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewCreator, ViewHolder, 
         rootViewController = ViewController()
         window?.rootViewController = rootViewController
         
-        let router = RootRouter()
+        let router = TodoRootRouter()
         self.router = router
         router.activate(dependencies: self)/**/
         window?.makeKeyAndVisible()
