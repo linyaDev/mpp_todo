@@ -15,12 +15,16 @@ import org.linya.todo.multiplatform.R
 import org.linya.todo.multiplatform.ui.todo.adapters.TasksAdapter
 
 class TodoMainView(context: Context) : FrameLayout(context), TodoMainRenderView {
-    private var mainStorage: Store<TodoMainStorage.TodoWish, TodoMainStorage.TodoState>? = null
-    private val adapter = TasksAdapter()
-
+    private lateinit var mainStorage: Store<TodoMainStorage.TodoWish, TodoMainStorage.TodoState>
+    private lateinit var adapter: TasksAdapter
     init {
         LayoutInflater.from(context).inflate(R.layout.view_todo_main , this, true)
 
+
+    }
+
+    fun setupView(){
+        adapter = TasksAdapter(mainStorage)
         val bar = findViewById<BottomAppBar>(R.id.bottom_app_bar)
         val fab = findViewById<View>(R.id.fab)
 
@@ -38,20 +42,21 @@ class TodoMainView(context: Context) : FrameLayout(context), TodoMainRenderView 
             this.mainStorage?.accept(TodoMainStorage.TodoWish.ShowMenu)
         }
 
+        /*
         MenuInflater(context).inflate(R.menu.menu, bar.menu)
         bar.menu.findItem(R.id.bookmark_menu).setOnMenuItemClickListener {
             this.mainStorage?.accept(TodoMainStorage.TodoWish.ShowFilter)
             true
-        }
+        }*/
     }
 
     override fun render(state: TodoMainStorage.TodoState) {
         adapter.items = state.todoList
-        adapter.notifyDataSetChanged()
     }
 
 
     override fun setupPresenter(presenter: Store<TodoMainStorage.TodoWish, TodoMainStorage.TodoState>) {
         this.mainStorage = presenter
+        setupView()
     }
 }

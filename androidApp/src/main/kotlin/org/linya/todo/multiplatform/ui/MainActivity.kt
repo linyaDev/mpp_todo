@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.linya.utils.interfaces.*
 import com.linya.utils.ui.RootRouter
+import com.linya.utils.ui.Screens
+import com.linya.utils.ui.TodoRootRouter
 import com.linya.utils.ui.todo.TodoViewTypes
 import org.linya.todo.multiplatform.ui.todo.TodoAddTask
 import org.linya.todo.multiplatform.ui.todo.TodoTasksMenu
@@ -16,7 +18,7 @@ import org.linya.todo.multiplatform.ui.todo.TodoMainView
 class MainActivity : AppCompatActivity(), OSDependencies, ViewCreator, ViewHolder {
 
     companion object {
-        private var rootRouter: RootRouter = RootRouter()
+        private var rootRouter: RootRouter = TodoRootRouter()
     }
 
     private lateinit var rootView: ViewGroup

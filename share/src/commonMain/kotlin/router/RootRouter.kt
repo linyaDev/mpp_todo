@@ -2,7 +2,9 @@ package com.linya.utils.ui
 
 import com.linya.utils.interfaces.*
 
-class RootRouter : Navigator, RouterDependencies {
+abstract class RootRouter : Navigator, RouterDependencies {
+
+    abstract fun getInitScreen(): Screen
     private val routersList = mutableListOf<Screen>()
     private lateinit var dependencies: OSDependencies
 
@@ -20,8 +22,7 @@ class RootRouter : Navigator, RouterDependencies {
         this.dependencies = dependencies
 
         if (routersList.isEmpty()){
-            val screen = Screens.TodoScreen(this)
-            navigateTo(screen)
+            navigateTo(getInitScreen())
         }else{
             routersList.last().router().didAttach()
         }

@@ -3,6 +3,7 @@ package org.linya.todo.multiplatform.ui.todo.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import com.linya.utils.ui.todo.models.TodoModel
@@ -21,14 +22,12 @@ class HeaderAdapterDelegate : AbsListItemAdapterDelegate<TodoModel.TodoModelHead
     }
 
     override fun onBindViewHolder(item: TodoModel.TodoModelHeader, holder: HeaderViewHolder, payloads: MutableList<Any>) {
-
+        holder.title.text = item.title
     }
 
     inner class HeaderViewHolder(view :View): RecyclerView.ViewHolder(view){
 
-        init {
-
-        }
+        val title:TextView  = view.findViewById(R.id.title)
 
 
     }

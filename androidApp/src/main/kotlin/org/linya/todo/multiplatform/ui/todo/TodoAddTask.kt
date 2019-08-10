@@ -42,9 +42,10 @@ class TodoAddTask(context: Context) : FrameLayout(context), TodoAddTaskRenderVie
         }
 
         submit.setOnClickListener {
+            this.storage?.accept(TodoAddTaskStorage.TodoAddWish.AddTask(TodoModel.TodoModelNote(taskTitle.text.toString(),taskText.text.toString())))
             taskTitle.text.clear()
             taskText.text.clear()
-            this.storage?.accept(TodoAddTaskStorage.TodoAddWish.AddTask(TodoModel.TodoModelNote(taskTitle.text.toString(),taskText.text.toString())))
+            this.storage?.accept(TodoAddTaskStorage.TodoAddWish.CloseAddTaskMenu)
         }
 
         subjects.setOnClickListener {

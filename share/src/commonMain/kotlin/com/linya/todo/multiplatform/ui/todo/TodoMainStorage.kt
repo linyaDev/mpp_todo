@@ -9,7 +9,10 @@ typealias TodoMainRenderView = RenderView<TodoMainStorage.TodoWish,TodoMainStora
 class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, router: TodoRouterActions):
         Storage<TodoMainStorage.TodoWish, TodoMainStorage.TodoState, TodoMainStorage.TodoEffect,TodoMainStorage.TodoNews>(
     renderView = renderView,
-    initState = TodoState(todoList = listOf(TodoModel.TodoModelHeader("My tasks"))),
+    initState = TodoState(todoList = listOf(
+     TodoModel.TodoModelHeader("My tasks")
+    ,TodoModel.TodoModelNote("Task 1 ", " Detail information 1"),
+     TodoModel.TodoModelNote("Task 2 ", " Detail information 2")    )),
     actor = TodoActor(router),
     reducer = TodoReducer()
 ){
@@ -21,8 +24,9 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
         data class AddTask(val todo: TodoModel): TodoWish()
         data class RemoveTodo(val todo: TodoModel): TodoWish()
     }
-    sealed class TodoNews{
 
+    sealed class TodoNews{
+        data class TodoTemoved(val todo: TodoModel): TodoNews()
     }
 
     data class TodoState(val name: String = "",
@@ -30,6 +34,7 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
 
      sealed class TodoEffect{
         data class AddTodo(val todo: TodoModel): TodoEffect()
+        data class RemoveTodo(val todo: TodoModel): TodoEffect()
     }
 
     class TodoActor(private val router: TodoRouterActions): Actor<TodoWish, TodoState, TodoEffect>{
@@ -39,7 +44,7 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
                 is TodoWish.ShowFilter -> router.openFilter()
                 is TodoWish.ShowAddTask -> router.openAddTask()
                 is TodoWish.AddTask -> channel.send(TodoEffect.AddTodo(wish.todo))
-                //else -> channel.send(TodoEffect.AddTodo(TodoModel.TodoModelNote("TestModel","This is test model")))
+                is TodoWish.RemoveTodo -> channel.send(TodoEffect.RemoveTodo(wish.todo))
             }
         }
     }
@@ -50,6 +55,11 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
                 is TodoEffect.AddTodo -> {
                     val list = state.todoList.toMutableList()
                     list.add(effect.todo)
+                    return state.copy(todoList = list)
+                }
+                is TodoEffect.RemoveTodo -> {
+                    val list = state.todoList.toMutableList()
+                    list.remove(effect.todo)
                     return state.copy(todoList = list)
                 }
             }
