@@ -12,10 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TasksView" customModule="iosApp" customModuleProvider="target">
             <connections>
-                <outlet property="addTodoButton" destination="lMs-87-Zwu" id="wXR-sm-U2I"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="fNU-kT-THM"/>
-                <outlet property="menuButton" destination="7o6-LQ-ga1" id="cfI-3l-3Eq"/>
-                <outlet property="menuView" destination="MW0-qq-wEs" id="dZP-mV-2vX"/>
+                <outlet property="menuView" destination="MW0-qq-wEs" id="mwx-T9-OuC"/>
                 <outlet property="tableView" destination="Eq8-AD-69X" id="35V-ff-cq0"/>
             </connections>
         </placeholder>
@@ -30,47 +28,18 @@
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MW0-qq-wEs" userLabel="menuView">
                     <rect key="frame" x="0.0" y="802" width="414" height="60"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7o6-LQ-ga1">
-                            <rect key="frame" x="15" y="12.5" width="35" height="35"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="35" id="GHm-T3-QXc"/>
-                                <constraint firstAttribute="width" constant="35" id="IQg-yy-sxE"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="menu"/>
-                            <connections>
-                                <action selector="menuPressed:" destination="-1" eventType="touchUpInside" id="k0s-bs-HjL"/>
-                            </connections>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="7o6-LQ-ga1" firstAttribute="centerY" secondItem="MW0-qq-wEs" secondAttribute="centerY" id="1cJ-Ss-AOY"/>
-                        <constraint firstItem="7o6-LQ-ga1" firstAttribute="leading" secondItem="MW0-qq-wEs" secondAttribute="leading" constant="15" id="QXq-vw-WXx"/>
                         <constraint firstAttribute="height" constant="60" id="dZP-BY-dgO"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMs-87-Zwu">
-                    <rect key="frame" x="349" y="737" width="60" height="60"/>
-                    <color key="backgroundColor" red="1" green="0.21225707641335212" blue="0.19516287944359079" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="GCc-ER-iT2"/>
-                        <constraint firstAttribute="height" constant="60" id="JIK-h3-1ia"/>
-                    </constraints>
-                    <connections>
-                        <action selector="todoPressed:" destination="-1" eventType="touchUpInside" id="pK7-Js-auQ"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="MW0-qq-wEs" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="4ob-nc-VCz"/>
-                <constraint firstItem="lMs-87-Zwu" firstAttribute="bottom" secondItem="MW0-qq-wEs" secondAttribute="top" constant="-5" id="AnB-Fr-ulR"/>
                 <constraint firstItem="MW0-qq-wEs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cgk-to-U0u"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Eq8-AD-69X" secondAttribute="trailing" id="izU-4T-FiC"/>
                 <constraint firstItem="Eq8-AD-69X" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="lNI-5Q-rey"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lMs-87-Zwu" secondAttribute="trailing" constant="5" id="mkV-HZ-NuQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MW0-qq-wEs" secondAttribute="bottom" id="tIa-S3-0bg"/>
                 <constraint firstItem="Eq8-AD-69X" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vRc-2d-zZk"/>
                 <constraint firstItem="MW0-qq-wEs" firstAttribute="top" secondItem="Eq8-AD-69X" secondAttribute="bottom" id="ynD-gQ-Fub"/>
@@ -79,7 +48,4 @@
             <point key="canvasLocation" x="49.275362318840585" y="46.205357142857139"/>
         </view>
     </objects>
-    <resources>
-        <image name="menu" width="18" height="18"/>
-    </resources>
 </document>

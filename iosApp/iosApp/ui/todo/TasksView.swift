@@ -7,27 +7,20 @@
 
 import UIKit
 import share
+import MaterialComponents.MaterialBottomAppBar
+import MaterialComponents.MaterialBottomAppBar_ColorThemer
+import MaterialComponents.MaterialButtons_ButtonThemer
 
 class TasksView: UIView , RenderView{
    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addTodoButton: UIButton!
-    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet var contentView : UIView!
     @IBOutlet var menuView: UIView!
     
-
     private var presenter: Storage!
     private let tasksAdapter = TasksAdapter()
-    
-    @IBAction func menuPressed(_ sender: Any) {
-        //presenter.accept(wish: TodoStorage.TodoWishAddTodo())
-    }
-    
-    @IBAction func todoPressed(_ sender: Any) {
-        presenter.accept(wish: TodoMainStorage.TodoWishShowAddTask())
-    }
-    
+    private let bottomBarView = MDCBottomAppBarView()
+
     func render(state: Any) {
         let model  = state as! TodoMainStorage.TodoState
         tasksAdapter.updateData(list: model.todoList)
@@ -62,11 +55,32 @@ class TasksView: UIView , RenderView{
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         addSubview(contentView)
+      
+        bottomBarView.translatesAutoresizingMaskIntoConstraints = false
+        bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        self.addSubview(bottomBarView)
+        
+        bottomBarView.floatingButton.setImage(UIImage(named: "ic_done"), for: .normal)
+        bottomBarView.floatingButtonPosition = .center
+        
+        layoutBottomAppBar()
+        
+        DispatchQueue.main.async {
+            self.layoutBottomAppBar()
+        }
+    }
+    
+    private func layoutBottomAppBar() {
+        let size = bottomBarView.sizeThatFits(self.bounds.size)
+        let bottomBarViewFrame = CGRect(x: 0,
+                                        y: self.bounds.size.height - size.height,
+                                        width: size.width,
+                                        height: size.height)
+        bottomBarView.frame = bottomBarViewFrame
     }
     
     func initialaze(){
         setupTableView()
-        drawShadow()
     }
     
     
@@ -81,21 +95,6 @@ class TasksView: UIView , RenderView{
         
         self.tableView.register(todoCellNib, forCellReuseIdentifier: "TodoCell")
         self.tableView.register(headerTodoCellNib, forCellReuseIdentifier: "HeaderTodoCell")
-    }
-    
-    private func drawShadow(){
-        let shadowSize : CGFloat = 5.0
-        let shadowPath = UIBezierPath(rect: CGRect(x: 0,
-                                                   y: -shadowSize / 2,
-                                                   width: menuView.frame.size.width ,
-                                                   height: menuView.frame.size.height - shadowSize
-        ))
-        
-        menuView.layer.masksToBounds = false
-        menuView.layer.shadowColor = UIColor.black.cgColor
-        menuView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        menuView.layer.shadowOpacity = 0.5
-        menuView.layer.shadowPath = shadowPath.cgPath
     }
     
 }

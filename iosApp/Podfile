@@ -5,7 +5,11 @@ target 'iosApp' do
     source 'https://github.com/CocoaPods/Specs.git'
     platform :ios, '11.3'
     use_frameworks!
-    
+  
+    pod 'MaterialComponents/BottomAppBar'
+    pod 'MaterialComponents/BottomAppBar+ColorThemer'
+    pod 'MaterialComponents/Buttons'
+    pod 'MaterialComponents/Buttons+ButtonThemer'
     pod 'Material', '~> 3.1.6'
   # Pods for iosApp
 

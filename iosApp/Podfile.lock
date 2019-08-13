@@ -3,22 +3,116 @@ PODS:
     - Material/Core (= 3.1.6)
   - Material/Core (3.1.6):
     - Motion (~> 3.1.1)
+  - MaterialComponents/AnimationTiming (87.0.0)
+  - MaterialComponents/BottomAppBar (87.0.0):
+    - MaterialComponents/Buttons
+    - MaterialComponents/NavigationBar
+    - MaterialComponents/private/Math
+    - MDFInternationalization
+  - "MaterialComponents/BottomAppBar+ColorThemer (87.0.0)":
+    - MaterialComponents/BottomAppBar
+    - MaterialComponents/Themes
+  - MaterialComponents/ButtonBar (87.0.0):
+    - MaterialComponents/Buttons
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+  - MaterialComponents/Buttons (87.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - "MaterialComponents/Buttons+ButtonThemer (87.0.0)":
+    - MaterialComponents/Buttons
+    - "MaterialComponents/Buttons+ColorThemer"
+    - "MaterialComponents/Buttons+ShapeThemer"
+    - "MaterialComponents/Buttons+TypographyThemer"
+    - MaterialComponents/Palettes
+  - "MaterialComponents/Buttons+ColorThemer (87.0.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Color
+  - "MaterialComponents/Buttons+ShapeThemer (87.0.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Shape
+  - "MaterialComponents/Buttons+TypographyThemer (87.0.0)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/Elevation (87.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (87.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/NavigationBar (87.0.0):
+    - MaterialComponents/ButtonBar
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Palettes (87.0.0)
+  - MaterialComponents/private/Application (87.0.0)
+  - MaterialComponents/private/Color (87.0.0)
+  - MaterialComponents/private/Math (87.0.0)
+  - MaterialComponents/Ripple (87.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/schemes/Color (87.0.0):
+    - MaterialComponents/private/Color
+  - MaterialComponents/schemes/Shape (87.0.0):
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+  - MaterialComponents/schemes/Typography (87.0.0):
+    - MaterialComponents/Typography
+  - MaterialComponents/ShadowElevations (87.0.0)
+  - MaterialComponents/ShadowLayer (87.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (87.0.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (87.0.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Themes (87.0.0):
+    - MaterialComponents/schemes/Color
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/Typography (87.0.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - Motion (3.1.1):
     - Motion/Core (= 3.1.1)
   - Motion/Core (3.1.1)
 
 DEPENDENCIES:
   - Material (~> 3.1.6)
+  - MaterialComponents/BottomAppBar
+  - "MaterialComponents/BottomAppBar+ColorThemer"
+  - MaterialComponents/Buttons
+  - "MaterialComponents/Buttons+ButtonThemer"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Material
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - Motion
 
 SPEC CHECKSUMS:
   Material: 9b30613deb1b79487eeede5e4f90cbff084311ea
+  MaterialComponents: 37478e606a0b4bb41e25c03cdf3be9e35fe59b78
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   Motion: f115b33f36cc52472a25a965daa89b3859817de0
 
-PODFILE CHECKSUM: 7ce6210ec6db736c35ce6007b3e663c11749c707
+PODFILE CHECKSUM: 94e5b2844552e77bcdfbf0b25632272711b42d06
 
 COCOAPODS: 1.5.3
