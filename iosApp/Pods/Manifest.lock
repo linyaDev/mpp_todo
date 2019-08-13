@@ -1,0 +1,24 @@
+PODS:
+  - Material (3.1.6):
+    - Material/Core (= 3.1.6)
+  - Material/Core (3.1.6):
+    - Motion (~> 3.1.1)
+  - Motion (3.1.1):
+    - Motion/Core (= 3.1.1)
+  - Motion/Core (3.1.1)
+
+DEPENDENCIES:
+  - Material (~> 3.1.6)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Material
+    - Motion
+
+SPEC CHECKSUMS:
+  Material: 9b30613deb1b79487eeede5e4f90cbff084311ea
+  Motion: f115b33f36cc52472a25a965daa89b3859817de0
+
+PODFILE CHECKSUM: 7ce6210ec6db736c35ce6007b3e663c11749c707
+
+COCOAPODS: 1.5.3
