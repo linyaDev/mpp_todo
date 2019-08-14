@@ -11,6 +11,8 @@ target 'iosApp' do
     pod 'MaterialComponents/Buttons'
     pod 'MaterialComponents/Buttons+ButtonThemer'
     pod 'Material', '~> 3.1.6'
+    pod 'BEMCheckBox'
+
   # Pods for iosApp
 
   target 'iosAppTests' do

@@ -12,6 +12,7 @@ import share
 class TasksAdapter : NSObject, UITableViewDataSource{
     
     var todoList : [TodoModel] = []
+    var presenter: Storage? = nil
     
     func updateData(list : [TodoModel]){
         todoList = list

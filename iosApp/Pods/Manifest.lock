@@ -1,4 +1,5 @@
 PODS:
+  - BEMCheckBox (1.4.1)
   - Material (3.1.6):
     - Material/Core (= 3.1.6)
   - Material/Core (3.1.6):
@@ -92,6 +93,7 @@ PODS:
   - Motion/Core (3.1.1)
 
 DEPENDENCIES:
+  - BEMCheckBox
   - Material (~> 3.1.6)
   - MaterialComponents/BottomAppBar
   - "MaterialComponents/BottomAppBar+ColorThemer"
@@ -100,6 +102,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BEMCheckBox
     - Material
     - MaterialComponents
     - MDFInternationalization
@@ -107,12 +110,13 @@ SPEC REPOS:
     - Motion
 
 SPEC CHECKSUMS:
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Material: 9b30613deb1b79487eeede5e4f90cbff084311ea
   MaterialComponents: 37478e606a0b4bb41e25c03cdf3be9e35fe59b78
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   Motion: f115b33f36cc52472a25a965daa89b3859817de0
 
-PODFILE CHECKSUM: 94e5b2844552e77bcdfbf0b25632272711b42d06
+PODFILE CHECKSUM: 48801793c3e9396f0f539eaa2f699b71590911c5
 
 COCOAPODS: 1.5.3

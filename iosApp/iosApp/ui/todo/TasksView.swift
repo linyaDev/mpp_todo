@@ -7,6 +7,7 @@
 
 import UIKit
 import share
+import Material
 import MaterialComponents.MaterialBottomAppBar
 import MaterialComponents.MaterialBottomAppBar_ColorThemer
 import MaterialComponents.MaterialButtons_ButtonThemer
@@ -29,6 +30,7 @@ class TasksView: UIView , RenderView{
     
     func setupPresenter(presenter: Storage) {
         self.presenter = presenter
+        tasksAdapter.presenter = presenter
     }
     
     func haveRemoveAnimation() -> Bool {
@@ -60,14 +62,25 @@ class TasksView: UIView , RenderView{
         bottomBarView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
         self.addSubview(bottomBarView)
         
-        bottomBarView.floatingButton.setImage(UIImage(named: "ic_done"), for: .normal)
+        bottomBarView.floatingButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+    
+        bottomBarView.floatingButton.setImage(Icon.add, for: .normal)
         bottomBarView.floatingButtonPosition = .center
-        
-        layoutBottomAppBar()
         
         DispatchQueue.main.async {
             self.layoutBottomAppBar()
         }
+        
+        let colorScheme = MDCSemanticColorScheme(defaults: .material201804)
+        let buttonScheme = MDCButtonScheme()
+        buttonScheme.colorScheme = colorScheme
+        MDCFloatingActionButtonThemer.applyScheme(buttonScheme, to: bottomBarView.floatingButton)
+        MDCBottomAppBarColorThemer.applySurfaceVariant(withSemanticColorScheme: colorScheme,
+                                                       to: bottomBarView)
+    }
+    
+    @objc func addTask(){
+        presenter.accept(wish: TodoMainStorage.TodoWishShowAddTask())
     }
     
     private func layoutBottomAppBar() {

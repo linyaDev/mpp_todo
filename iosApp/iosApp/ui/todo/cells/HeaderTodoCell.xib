@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGj-XG-vtY">
-                        <rect key="frame" x="76" y="11.5" width="95" height="21"/>
+                        <rect key="frame" x="26" y="11.5" width="95" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="3Li-xX-nRr"/>
                         </constraints>
@@ -32,7 +32,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="DGj-XG-vtY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0Om-Wv-pSj"/>
-                    <constraint firstItem="DGj-XG-vtY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="G8p-HF-Ld4"/>
+                    <constraint firstItem="DGj-XG-vtY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="G8p-HF-Ld4"/>
                     <constraint firstItem="DGj-XG-vtY" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="Hbw-aD-Avp"/>
                 </constraints>
             </tableViewCellContentView>
