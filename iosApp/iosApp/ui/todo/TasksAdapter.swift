@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import share
+import BEMCheckBox
 
 class TasksAdapter : NSObject, UITableViewDataSource{
     
@@ -20,6 +21,14 @@ class TasksAdapter : NSObject, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoList.count
+    }
+    
+    class CheckBoxListener: NSObject,BEMCheckBoxDelegate{
+        var selector:(()->Void)? = nil
+        
+        func animationDidStop(for checkBox: BEMCheckBox) {
+            selector?()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,6 +47,15 @@ class TasksAdapter : NSObject, UITableViewDataSource{
                 let noteModel = model as! TodoModel.TodoModelNote
                 cell.title.text = noteModel.title
                 cell.desc.text = noteModel.text
+                
+                let clouse  = { () -> Void in
+                    let x = 0
+                }
+                let listener = CheckBoxListener()
+                listener.selector = clouse
+                cell.checkbox.delegate = listener
+                
+                
             }
             
             return cell
