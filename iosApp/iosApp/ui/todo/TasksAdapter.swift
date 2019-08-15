@@ -23,14 +23,6 @@ class TasksAdapter : NSObject, UITableViewDataSource{
         return todoList.count
     }
     
-    class CheckBoxListener: NSObject,BEMCheckBoxDelegate{
-        var selector:(()->Void)? = nil
-        
-        func animationDidStop(for checkBox: BEMCheckBox) {
-            selector?()
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
         let model = todoList[index]
@@ -49,13 +41,10 @@ class TasksAdapter : NSObject, UITableViewDataSource{
                 cell.desc.text = noteModel.text
                 
                 let clouse  = { () -> Void in
-                    let x = 0
+                    self.presenter?.accept(wish: TodoMainStorage.TodoWishRemoveTodo(todo: model))
                 }
-                let listener = CheckBoxListener()
-                listener.selector = clouse
-                cell.checkbox.delegate = listener
-                
-                
+               
+                cell.checkboxListener.selector = clouse
             }
             
             return cell
