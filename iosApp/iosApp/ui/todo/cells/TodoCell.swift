@@ -18,10 +18,6 @@ class TodoCell: UITableViewCell {
     class CheckBoxListener: NSObject,BEMCheckBoxDelegate{
         var selector:(()->Void)? = nil
         
-        /*
-        func didTap(_ checkBox: BEMCheckBox) {
-            selector?()
-        }*/
         func animationDidStop(for checkBox: BEMCheckBox) {
             selector?()
         }

@@ -41,11 +41,24 @@ class AddTaskView: UIView , RenderView{
         
         viewConstraint.constant = 100
         self.menu.frame.origin.y = self.menu.frame.height
-        
+
         UIView.animate(withDuration: 0.3, animations: {
             self.menu.frame.origin.y = 0
-        }, completion: nil)
+        }, completion: nil)*/
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+        let x = 0
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+         self.menu.frame.origin.y = 0
+    }
+    
     
     @objc func methodq(req:UITapGestureRecognizer) {
         presenter.accept(wish: TodoAddTaskStorage.TodoAddWishCloseAddTaskMenu())
