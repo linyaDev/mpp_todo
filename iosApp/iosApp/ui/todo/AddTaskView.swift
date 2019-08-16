@@ -68,10 +68,10 @@ class AddTaskView: UIView , RenderView{
     }
     
     @IBAction func sendTodo(_ sender: Any) {
-        //let model = TodoModel.init
-        
-        
-        //presenter.accept(wish: TodoAddTaskStorage.TodoAddWishAddTask(todo: model))
+        let titleText = title.text!
+        let titleDesc = taskDescription.text!
+        let model = TodoModel.TodoModelNote(title: titleText, text: titleDesc)
+        presenter.accept(wish: TodoAddTaskStorage.TodoAddWishAddTask(todo: model))
     }
     
     func render(state: Any) {

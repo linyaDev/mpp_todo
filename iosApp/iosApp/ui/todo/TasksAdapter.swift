@@ -39,6 +39,7 @@ class TasksAdapter : NSObject, UITableViewDataSource{
                 let noteModel = model as! TodoModel.TodoModelNote
                 cell.title.text = noteModel.title
                 cell.desc.text = noteModel.text
+                cell.checkbox.on = false
                 
                 let clouse  = { () -> Void in
                     self.presenter?.accept(wish: TodoMainStorage.TodoWishRemoveTodo(todo: model))

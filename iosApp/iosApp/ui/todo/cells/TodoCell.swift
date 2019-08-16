@@ -25,6 +25,7 @@ class TodoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+   
         checkbox.boxType = BEMBoxType.circle
         addSubview(checkbox)
         checkbox.delegate = checkboxListener
