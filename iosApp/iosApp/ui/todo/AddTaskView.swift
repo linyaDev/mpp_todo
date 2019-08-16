@@ -10,10 +10,13 @@ import share
 
 class AddTaskView: UIView , RenderView{
    
-    @IBOutlet var viewConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var menu: UIView!
     @IBOutlet var contentView: UIView!
     private var presenter: Storage!
+    @IBOutlet var title: UITextField!
+    @IBOutlet var taskDescription: UITextField!
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,33 +38,40 @@ class AddTaskView: UIView , RenderView{
     }
     
     func initialaze(){
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(methodq))
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(closeMenu))
         singleTapGesture.numberOfTapsRequired = 1
         contentView.addGestureRecognizer(singleTapGesture)
-        
-        viewConstraint.constant = 100
+    
         self.menu.frame.origin.y = self.menu.frame.height
-
         UIView.animate(withDuration: 0.3, animations: {
             self.menu.frame.origin.y = 0
-        }, completion: nil)*/
+        }, completion: nil)
        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
-        let x = 0
+       let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+        UIView.animate(withDuration: 0.3, animations: {
+            self.menu.frame.origin.y =  self.frame.height - keyboardSize.height - self.menu.frame.height
+        }, completion: nil)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-         self.menu.frame.origin.y = 0
+    
     }
     
     
-    @objc func methodq(req:UITapGestureRecognizer) {
+    @objc func closeMenu(req:UITapGestureRecognizer) {
         presenter.accept(wish: TodoAddTaskStorage.TodoAddWishCloseAddTaskMenu())
+    }
+    
+    @IBAction func sendTodo(_ sender: Any) {
+        //let model = TodoModel.init
+        
+        
+        //presenter.accept(wish: TodoAddTaskStorage.TodoAddWishAddTask(todo: model))
     }
     
     func render(state: Any) {
