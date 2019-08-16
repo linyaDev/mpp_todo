@@ -15,6 +15,7 @@
                 <outlet property="bottomConstraint" destination="CId-6N-Gxf" id="4sE-QP-XhT"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Er6-8e-qVI"/>
                 <outlet property="menu" destination="L5w-ge-Cr4" id="w9x-TV-k5O"/>
+                <outlet property="opacyVIew" destination="9AA-rc-6Oj" id="A43-kC-zqD"/>
                 <outlet property="taskDescription" destination="hCe-fP-tNU" id="lCv-TV-oMb"/>
                 <outlet property="title" destination="HzG-8q-8bH" id="VX8-np-vgV"/>
             </connections>
@@ -24,6 +25,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view alpha="0.050000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AA-rc-6Oj" userLabel="opacyView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5w-ge-Cr4">
                     <rect key="frame" x="0.0" y="698" width="414" height="198"/>
                     <subviews>
@@ -84,8 +89,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.094850352112676062" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="L5w-ge-Cr4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0Nb-mE-8Mx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9AA-rc-6Oj" secondAttribute="trailing" id="500-Je-FbE"/>
                 <constraint firstItem="L5w-ge-Cr4" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="CId-6N-Gxf"/>
                 <constraint firstItem="L5w-ge-Cr4" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="F4k-YS-NMc"/>
+                <constraint firstItem="9AA-rc-6Oj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JRw-Jp-VUf"/>
+                <constraint firstItem="9AA-rc-6Oj" firstAttribute="bottom" secondItem="L5w-ge-Cr4" secondAttribute="bottom" id="bq1-aZ-eIn"/>
+                <constraint firstItem="9AA-rc-6Oj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="iMv-5v-cvW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>

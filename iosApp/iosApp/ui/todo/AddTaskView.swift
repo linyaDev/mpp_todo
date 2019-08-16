@@ -13,6 +13,8 @@ class AddTaskView: UIView , RenderView{
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var menu: UIView!
     @IBOutlet var contentView: UIView!
+    @IBOutlet var opacyVIew: UIView!
+    
     private var presenter: Storage!
     @IBOutlet var title: UITextField!
     @IBOutlet var taskDescription: UITextField!
@@ -40,7 +42,7 @@ class AddTaskView: UIView , RenderView{
     func initialaze(){
         let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(closeMenu))
         singleTapGesture.numberOfTapsRequired = 1
-        contentView.addGestureRecognizer(singleTapGesture)
+        opacyVIew.addGestureRecognizer(singleTapGesture)
     
         self.menu.frame.origin.y = self.menu.frame.height
         UIView.animate(withDuration: 0.3, animations: {
