@@ -1,10 +1,27 @@
 package com.linya.utils.ui.todo
 
+import com.linya.utils.dispatcher
 import com.linya.utils.interfaces.RenderView
 import com.linya.utils.mvi.Storage
 import com.linya.utils.ui.todo.models.TodoModel
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
+import kotlinx.serialization.json.JSON
 
 typealias TodoMainRenderView = RenderView<TodoMainStorage.TodoWish,TodoMainStorage.TodoState,TodoMainStorage.TodoNews>
+
+@Serializable
+data class GitHubRepo(
+    val name: String,
+    @SerialName("html_url")
+    val htmlUrl: String
+)
 
 class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, router: TodoRouterActions):
         Storage<TodoMainStorage.TodoWish, TodoMainStorage.TodoState, TodoMainStorage.TodoEffect,TodoMainStorage.TodoNews>(
@@ -16,6 +33,24 @@ class TodoMainStorage(renderView : RenderView<TodoWish, TodoState,TodoNews>, rou
     actor = TodoActor(router),
     reducer = TodoReducer()
 ){
+
+    private  val BASE_URL = "https://httpbin.org"
+    private  val GET_UUID = "$BASE_URL/uuid"
+
+
+
+    init {
+
+        val client = HttpClient()
+
+        GlobalScope.launch(dispatcher) {
+            val dataString = client.get<String>(GET_UUID)
+            //val jsonString = JSON(strictMode = false).parse(GitHubRepo.serializer(),dataString)
+            accept(TodoWish.AddTask(TodoModel.TodoModelNote("TTTT","tt")))
+            //Log.i("$BASE_TAG Simple case ", data)
+        }
+
+    }
 
     sealed class TodoWish{
         object ShowMenu : TodoWish()

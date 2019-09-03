@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.linya.todo.multiplatform">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
                  android:name=".ui.MainApplication"
                  android:allowBackup="false"

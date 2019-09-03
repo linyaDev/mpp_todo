@@ -5,7 +5,6 @@ import com.linya.utils.interfaces.RenderView
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 
-
 typealias Store<Wish,State> = Storage<Wish,State,*,*>
 @ExperimentalCoroutinesApi
 abstract class Storage<Wish : Any ,State : Any,Effect : Any,News: Any>(
