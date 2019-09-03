@@ -73,6 +73,11 @@ class AddTaskView: UIView , RenderView{
         let titleText = title.text!
         let titleDesc = taskDescription.text!
         let model = TodoModel.TodoModelNote(title: titleText, text: titleDesc)
+        
+        if(titleText.isEmpty){
+            return
+        }
+        
         presenter.accept(wish: TodoAddTaskStorage.TodoAddWishAddTask(todo: model))
     }
     
@@ -97,7 +102,5 @@ class AddTaskView: UIView , RenderView{
         UIView.animate(withDuration: 0.3, animations: {
              self.menu.frame.origin.y += self.menu.frame.height
         }, completion: completion)
-        
-        //
     }
 }
